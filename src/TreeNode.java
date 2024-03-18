@@ -5,10 +5,11 @@ public class TreeNode<String> {
     private String data;
     private List<TreeNode<String>> children;
 
-    public TreeNode(String data){
+    public TreeNode(String data) {
         this.data = data;
         this.children = new ArrayList<>();
     }
+
     public String getData() {
         return data;
     }
@@ -19,6 +20,13 @@ public class TreeNode<String> {
 
     public List<TreeNode<String>> getChildren() {
         return children;
+    }
+
+    public TreeNode<String> getChild(int index) {
+        if (index >= 0 && index < children.size()) {
+            return children.get(index);
+        }
+        return null; // Return null if index is out of bounds
     }
 
     public void addChild(TreeNode... nodes) {
@@ -33,12 +41,7 @@ public class TreeNode<String> {
     }
 
     // Method to print the index of a child node
-    public void print_loc(TreeNode<String> node) {
-        int index = findChild(node);
-        if (index != -1) {
-            System.out.println("Node " + node.getData() + " found at index " + index);
-        } else {
-            System.out.println("Node " + node.getData() + " not found in children.");
-        }
+    public int getLoc(TreeNode<String> node) {
+        return findChild(node);
     }
 }
