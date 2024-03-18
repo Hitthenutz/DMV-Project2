@@ -2,12 +2,13 @@ import java.util.Scanner;
 
 public class DMV{
     public static void main(String[] args) {
+        int x;
+
+
+
         Scanner input = new Scanner(System.in);
 
         TreeNode root = new TreeNode("DMV");
-
-
-
 
         /***Level 1***/
         TreeNode a1 = new TreeNode("Registration");
@@ -25,20 +26,35 @@ public class DMV{
 
         System.out.println("Welcome to the DMV, what can we do for you?");
         for (int i = 0; i < root.getChildren().size(); i++) {
-            System.out.println((i + 1) + ". " + root.getChild(i).getData());
+            System.out.println((i+1) + ". " + root.getChild(i).getData());
         }
 
+        x = input.nextInt();
+        /***error handle***/
         //Test if x is receiving user input
-        //System.out.println(x);
+        //System.out.println(""+ x);
 
-        int x = input.nextInt();
+        //curr holds current node
+        if (x >= 1 && x <= root.getChildren().size()) {
+            TreeNode curr = root.getChild(x - 1); // Correcting for array indexing
 
-        /******Switch Case******/
-        switch(x){
-            case 1:
-                break;
-            case 2:
-                break;
+            /***Error handling***/
+            //System.out.println(curr.getData());
+
+            if (curr.getData().equals("Registration")) {
+                System.out.println("What would you like to do in " + curr.getData());
+                for (int i = 0; i < curr.getChildren().size(); i++) {
+                    System.out.println((i + 1) + ". " + curr.getChild(i).getData());
+                }
+            } else if (curr.getData().equals("License/ID")) {
+                System.out.println("What would you like to do in "+ curr.getData());
+                for (int i = 0; i < curr.getChildren().size(); i++) {
+                    System.out.println((i + 1) + ". " + curr.getChild(i).getData());
+                }
+            }
+            // Add other conditions for different actions as needed
+        } else {
+            System.out.println("Invalid input.");
         }
 
 
