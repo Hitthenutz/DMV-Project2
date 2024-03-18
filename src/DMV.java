@@ -4,8 +4,6 @@ public class DMV{
     public static void main(String[] args) {
         int x;
 
-
-
         Scanner input = new Scanner(System.in);
 
         TreeNode root = new TreeNode("DMV");
@@ -30,7 +28,7 @@ public class DMV{
         }
 
         x = input.nextInt();
-        /***error handle***/
+        /***Error handling***/
         //Test if x is receiving user input
         //System.out.println(""+ x);
 
@@ -52,13 +50,10 @@ public class DMV{
                     System.out.println((i + 1) + ". " + curr.getChild(i).getData());
                 }
             }
+            
             // Add other conditions for different actions as needed
         } else {
             System.out.println("Invalid input.");
         }
-
-
-
-
     }
 }
