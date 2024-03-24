@@ -26,7 +26,6 @@ public class DMV{
          * Check Status
          * License Plate/Decal/Placard
          */
-
         TreeNode b1 = new TreeNode("Renew");
         TreeNode b2 = new TreeNode("New Registration");
         TreeNode b3 = new TreeNode("Check Registration Status");
@@ -39,7 +38,7 @@ public class DMV{
         TreeNode b8 = new TreeNode("Permits");
 
 
-//adds all the level 2 nodes to level 1 in registration branch
+        //adds all the level 2 nodes to level 1 in registration branch
         a1.addChild(b1,b2,b3,b4);
 
         System.out.println("Welcome to the DMV, what can we do for you?");
