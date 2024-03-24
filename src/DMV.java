@@ -8,18 +8,38 @@ public class DMV{
 
         TreeNode root = new TreeNode("DMV");
 
-        /***Level 1***/
+        /*
+         * Level 1 of Tree Node
+         * Registration
+         * License/ID
+         */
+
         TreeNode a1 = new TreeNode("Registration");
         TreeNode a2 = new TreeNode("License/ID");
 
         root.addChild(a1, a2);
 
-        /***Level 2***/
+        /*
+         * Level 2 of Tree Node
+         * Renew
+         * New Registration Branch
+         * Check Status
+         * License Plate/Decal/Placard
+         */
+
         TreeNode b1 = new TreeNode("Renew");
         TreeNode b2 = new TreeNode("New Registration");
         TreeNode b3 = new TreeNode("Check Registration Status");
         TreeNode b4 = new TreeNode("License Plate/Decals/Placards");
 
+
+        TreeNode b5 = new TreeNode("Renew");
+        TreeNode b6 = new TreeNode("Apply for New DL");
+        TreeNode b7 = new TreeNode("Apply for Real ID");
+        TreeNode b8 = new TreeNode("Permits");
+
+
+//adds all the level 2 nodes to level 1 in registration branch
         a1.addChild(b1,b2,b3,b4);
 
         System.out.println("Welcome to the DMV, what can we do for you?");
