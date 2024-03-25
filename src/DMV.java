@@ -60,6 +60,7 @@ public class DMV{
 
         //adds all the level 2 nodes to level 1 in registration branch
         a1.addChild(b1,b2,b3,b4);
+        a2.addChild(b5,b6,b7,b8);
 
         System.out.println("Welcome to the DMV, what can we do for you?");
         for (int i = 0; i < root.getChildren().size(); i++) {
