@@ -78,7 +78,7 @@ public class Customer {
         System.out.println("Enter model:");
         String model = input.nextLine();
         System.out.println("Enter year:");
-        String year = input.nextLine();
+        int year = input.nextInt();
         System.out.println("Enter VIN:");
         int vin = input.nextInt();
         return new Customer(plate,make,model,year,vin);
