@@ -86,7 +86,7 @@ public class DMV{
                 }
 
                /****Enter Client Data stores into Customer Object***/
-               currCustomer = DMV.enterData();
+               currCustomer = Customer.enterDataCustomer();
             } else if (curr.getData().equals("License/ID")) {
                 System.out.println("What would you like to do in "+ curr.getData());
                 for (int i = 0; i < curr.getChildren().size(); i++) {
@@ -99,17 +99,5 @@ public class DMV{
             System.out.println("Invalid input.");
         }
     }
-    public static Customer enterData(){
 
-        System.out.println("Enter name:");
-        String name = input.nextLine();
-        System.out.println("Enter address:");
-        String address = input.nextLine();
-        System.out.println("Enter age:");
-        int age = input.nextInt();
-        System.out.println("Enter SSN");
-        int ssn = input.nextInt();
-
-        return new Customer(name, address, age, ssn);
-    }
 }
