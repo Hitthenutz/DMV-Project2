@@ -2,7 +2,9 @@ import java.util.Scanner;
 
 public class Customer {
     private String name, address, plate, make, model;
-    private int age, ssn, vin, year;
+    private int age;
+    private int ssn;
+    private int vin;
 
     public static Scanner input = new Scanner(System.in);
 
@@ -15,46 +17,61 @@ public class Customer {
     public Customer(){
 
     }
-
     public Customer(String plate, String make, String model, int year, int vin) {
         this.plate = plate;
         this.make = make;
         this.model = model;
-        this.year = year;
         this.vin = vin;
     }
 
     // Getters and setters for customer attributes
-
     public int getSsn() {
         return ssn;
     }
-
     public void setSsn(int ssn) {
         this.ssn = ssn;
     }
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public String getAddress() {
         return address;
     }
-
     public void setAddress(String address) {
         this.address = address;
     }
-
     public int getAge() {
         return age;
     }
-
     public void setAge(int age) {
         this.age = age;
+    }
+    public String getPlate() {
+        return plate;
+    }
+    public void setPlate(String plate) {
+        this.plate = plate;
+    }
+    public String getMake() {
+        return make;
+    }
+    public void setMake(String make) {
+        this.make = make;
+    }
+    public String getModel() {
+        return model;
+    }
+    public void setModel(String model) {
+        this.model = model;
+    }
+    public int getVin() {
+        return vin;
+    }
+    public void setVin(int vin) {
+        this.vin = vin;
     }
 
     public static Customer enterDataCustomer(){
