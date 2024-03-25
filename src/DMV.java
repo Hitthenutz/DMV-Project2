@@ -20,8 +20,7 @@ public class DMV{
 
     public static Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
-        int x, age, ssn;
-        String name, address;
+        int x;
         Customer currCustomer = new Customer();
 
 

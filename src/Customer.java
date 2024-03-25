@@ -4,7 +4,7 @@ public class Customer {
     private String name, address, plate, make, model;
     private int age;
     private int ssn;
-    private int vin;
+    private String vin;
 
     public static Scanner input = new Scanner(System.in);
 
@@ -17,7 +17,7 @@ public class Customer {
     public Customer(){
 
     }
-    public Customer(String plate, String make, String model, int year, int vin) {
+    public Customer(String plate, String make, String model, int year, String vin) {
         this.plate = plate;
         this.make = make;
         this.model = model;
@@ -67,10 +67,10 @@ public class Customer {
     public void setModel(String model) {
         this.model = model;
     }
-    public int getVin() {
+    public String getVin() {
         return vin;
     }
-    public void setVin(int vin) {
+    public void setVin(String vin) {
         this.vin = vin;
     }
 
@@ -89,15 +89,19 @@ public class Customer {
     }
     public static Customer enterDataCar(){
         System.out.println("Enter plate number:");
+        //7 digit number
         String plate = input.nextLine();
+        //?list all makes possible!
         System.out.println("Enter make:");
         String make = input.nextLine();
         System.out.println("Enter model:");
+        //list all models of each car
         String model = input.nextLine();
         System.out.println("Enter year:");
         int year = input.nextInt();
         System.out.println("Enter VIN:");
-        int vin = input.nextInt();
+        //17Characters(letters & numbers)
+        String vin = input.nextLine();
         return new Customer(plate,make,model,year,vin);
     }
 
