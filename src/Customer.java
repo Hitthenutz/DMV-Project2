@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class Customer {
-    private String name, address, plate, make, model, year;
-    private int age, ssn, vin;
+    private String name, address, plate, make, model;
+    private int age, ssn, vin, year;
 
     public static Scanner input = new Scanner(System.in);
 
@@ -16,7 +16,7 @@ public class Customer {
 
     }
 
-    public Customer(String plate, String make, String model, String year, int vin) {
+    public Customer(String plate, String make, String model, int year, int vin) {
         this.plate = plate;
         this.make = make;
         this.model = model;
