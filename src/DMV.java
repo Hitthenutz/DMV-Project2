@@ -1,10 +1,30 @@
+/**
+ * Matthew Quan
+ *
+ *
+ *
+ * Project 2 - DMV Customer Service (Making DMV employee's job easier)
+ *
+ * Unauthorized reproduction, duplication, or distribution of any content,
+ * including but not limited to text, images, audio, or code, is strictly
+ * prohibited and may result in legal action. All rights to copy, modify,
+ * or distribute any materials are reserved and require explicit authorization
+ * from the rightful copyright owner.
+ *
+ * **/
 import java.util.Scanner;
 
 public class DMV{
-    public static void main(String[] args) {
-        int x;
 
-        Scanner input = new Scanner(System.in);
+    /**Global Scanner**/
+
+    public static Scanner input = new Scanner(System.in);
+    public static void main(String[] args) {
+        int x, age, ssn;
+        String name, address;
+        Customer currCustomer = new Customer();
+
+
 
         TreeNode root = new TreeNode("DMV");
 
@@ -54,6 +74,7 @@ public class DMV{
         //curr holds current node
         if (x >= 1 && x <= root.getChildren().size()) {
             TreeNode curr = root.getChild(x - 1); // Correcting for array indexing
+            //stores the number the user selects. Uses number to follow Tree Structure
 
             /***Error handling***/
             //System.out.println(curr.getData());
@@ -63,16 +84,32 @@ public class DMV{
                 for (int i = 0; i < curr.getChildren().size(); i++) {
                     System.out.println((i + 1) + ". " + curr.getChild(i).getData());
                 }
+
+               /****Enter Client Data stores into Customer Object***/
+               currCustomer = DMV.enterData();
             } else if (curr.getData().equals("License/ID")) {
                 System.out.println("What would you like to do in "+ curr.getData());
                 for (int i = 0; i < curr.getChildren().size(); i++) {
                     System.out.println((i + 1) + ". " + curr.getChild(i).getData());
                 }
             }
-            
+
             // Add other conditions for different actions as needed
         } else {
             System.out.println("Invalid input.");
         }
+    }
+    public static Customer enterData(){
+
+        System.out.println("Enter name:");
+        String name = input.nextLine();
+        System.out.println("Enter address:");
+        String address = input.nextLine();
+        System.out.println("Enter age:");
+        int age = input.nextInt();
+        System.out.println("Enter SSN");
+        int ssn = input.nextInt();
+
+        return new Customer(name, address, age, ssn);
     }
 }
