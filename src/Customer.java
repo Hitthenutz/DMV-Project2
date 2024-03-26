@@ -76,6 +76,8 @@ public class Customer {
 
     public static Customer enterDataCustomer(){
 
+        //ERROR HANDLING NEED
+
         System.out.println("Enter name:");
         String name = input.nextLine();
         System.out.println("Enter address:");
@@ -88,6 +90,9 @@ public class Customer {
         return new Customer(name, address, age, ssn);
     }
     public static Customer enterDataCar(){
+
+        //ERROR HANDLING NEED
+
         System.out.println("Enter plate number:");
         //7 digit number
         String plate = input.nextLine();

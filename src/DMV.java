@@ -21,9 +21,8 @@ public class DMV{
     public static Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
         int x;
+
         Customer currCustomer = new Customer();
-
-
 
         TreeNode root = new TreeNode("DMV");
 
@@ -57,7 +56,7 @@ public class DMV{
         TreeNode b8 = new TreeNode("Permits");
 
 
-        //adds all the level 2 nodes to level 1 in registration branch
+        //adds all the level 2 nodes to level 1 in registration/License branch
         a1.addChild(b1,b2,b3,b4);
         a2.addChild(b5,b6,b7,b8);
 
@@ -84,6 +83,26 @@ public class DMV{
                 for (int i = 0; i < curr.getChildren().size(); i++) {
                     System.out.println((i + 1) + ". " + curr.getChild(i).getData());
                 }
+
+                x = input.nextInt();
+                switch(x){
+                    case 1://Renew
+
+                        Customer.enterDataCustomer();
+
+                        break;
+                    case 2://New Registration
+
+
+                        break;
+                    case 3://Check Registration Status
+
+                        break;
+                    case 4://License plate/decal/placard
+
+                        break;
+                }
+
 
                /****Enter Client Data stores into Customer Object***/
                currCustomer = Customer.enterDataCustomer();
