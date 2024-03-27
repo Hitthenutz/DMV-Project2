@@ -84,7 +84,7 @@ public class Customer {
         String address = input.nextLine();
         System.out.println("Enter age:");
         int age = input.nextInt();
-        System.out.println("Enter SSN");
+        System.out.println("Enter SSN:");
         int ssn = input.nextInt();
 
         return new Customer(name, address, age, ssn);
