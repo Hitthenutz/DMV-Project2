@@ -111,6 +111,38 @@ public class DMV{
                 for (int i = 0; i < curr.getChildren().size(); i++) {
                     System.out.println((i + 1) + ". " + curr.getChild(i).getData());
                 }
+                x = input.nextInt();
+                switch(x){
+                    case 1://Renew
+
+                        Customer.enterDataCustomer();
+
+                        break;
+                    case 2://Real ID
+
+
+                        break;
+                    case 3://New DL
+
+                        break;
+                    case 4://Permits
+                        System.out.println("Have you checked the DMV website?\nYes/No");
+                       String j = input.nextLine();
+                       if (j.equalsIgnoreCase("Yes")){
+                           System.out.println("Please visit & follow: https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/instruction-permits/");
+                       } else {
+                           //Ask documents
+                           //print fee
+                           //print delivery date
+                           //print confirmation number
+                       }
+
+                        break;
+                    case 5://Record
+
+
+                        break;
+                }
             }
 
             // Add other conditions for different actions as needed
