@@ -78,19 +78,15 @@ public class Customer {
     public double getDebt() {
         return debt;
     }
-    public void setDebt(double debt) {
-        this.debt = debt;
-    }
     public void addDebt(double debt){
         this.debt += debt;
-    }
+    } // setter but adding
 
     public static Customer enterDataCustomer() {
         String name;
         String address;
         int age;
         int ssn;
-
 
         boolean inputIsValid = false;
 

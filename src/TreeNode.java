@@ -31,7 +31,9 @@ public class TreeNode<String> {
     }
 
     public void addChild(TreeNode... nodes) {
-        Collections.addAll(children, nodes);
+        for (TreeNode node : nodes) {
+            children.add(node);
+        }
     }
 
     //returns index at which the thing called is found

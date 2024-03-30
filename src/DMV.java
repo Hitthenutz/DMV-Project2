@@ -12,7 +12,9 @@
  * from the rightful copyright owner.
  **/
 
+import java.util.Random;
 import java.util.Scanner;
+import java.util.random.RandomGenerator;
 
 
 public class DMV {
@@ -22,6 +24,9 @@ public class DMV {
     public static Scanner input = new Scanner(System.in);
     public static int x;
     public static boolean y = false;
+    public static int time;
+    public static Random random = new Random();
+
 
     public static void main(String[] args) {
         Customer currCustomer = new Customer();
@@ -137,8 +142,9 @@ public class DMV {
                                 System.out.println("Please submit all required documents");
                                 currCustomer.addDebt(58.00);
                                 System.out.println("You now owe, " + currCustomer.getDebt() + " pay now or a debt will inquire on your account");
-                                System.out.println("Delivery Time: 1:00 hr");
-                                //print confirmation number
+                                System.out.println("Delivery Time: 1:00 hr"); // change into variable for time
+                                int r = random.nextInt(0,1000);
+                                System.out.println("Confirmation Number: " + r);
                             }
 
                             break;
