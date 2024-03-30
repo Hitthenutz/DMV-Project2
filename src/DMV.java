@@ -23,7 +23,7 @@ public class DMV {
 
     public static Scanner input = new Scanner(System.in);
     public static int x;
-    public static boolean y = false;
+    public static boolean y = true;
     public static int time;
     public static Random random = new Random();
 
@@ -72,6 +72,7 @@ public class DMV {
             for (int i = 0; i < root.getChildren().size(); i++) {
                 System.out.println((i + 1) + ". " + root.getChild(i).getData());
             }
+            System.out.println("3. Exit");
 
             x = input.nextInt();
             /***Error handling***/
@@ -145,6 +146,7 @@ public class DMV {
                                 System.out.println("Delivery Time: 1:00 hr"); // change into variable for time
                                 int r = random.nextInt(0,1000);
                                 System.out.println("Confirmation Number: " + r);
+
                             }
 
                             break;
