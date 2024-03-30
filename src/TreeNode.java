@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class TreeNode<String> {
     private String data;
-    private List<TreeNode<String>> children;
+    private final List<TreeNode<String>> children;
 
     public TreeNode(String data) {
         this.data = data;
@@ -30,9 +31,7 @@ public class TreeNode<String> {
     }
 
     public void addChild(TreeNode... nodes) {
-        for (TreeNode node : nodes) {
-            children.add(node);
-        }
+        Collections.addAll(children, nodes);
     }
 
     //returns index at which the thing called is found

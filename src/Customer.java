@@ -1,5 +1,4 @@
 import java.util.InputMismatchException;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Customer {
@@ -7,6 +6,7 @@ public class Customer {
     private int age;
     private int ssn;
     private String vin;
+    private double debt;
 
     public static Scanner input = new Scanner(System.in);
 
@@ -75,12 +75,22 @@ public class Customer {
     public void setVin(String vin) {
         this.vin = vin;
     }
+    public double getDebt() {
+        return debt;
+    }
+    public void setDebt(double debt) {
+        this.debt = debt;
+    }
+    public void addDebt(double debt){
+        this.debt += debt;
+    }
 
     public static Customer enterDataCustomer() {
         String name;
         String address;
         int age;
         int ssn;
+
 
         boolean inputIsValid = false;
 
