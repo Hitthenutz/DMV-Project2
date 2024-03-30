@@ -138,7 +138,8 @@ public class DMV{
                        }
 
                         break;
-                    case 5://Record
+                    case 5://Record we can do a point system
+
 
 
                         break;

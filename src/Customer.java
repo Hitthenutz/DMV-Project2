@@ -1,3 +1,5 @@
+import java.util.InputMismatchException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Customer {
@@ -74,18 +76,46 @@ public class Customer {
         this.vin = vin;
     }
 
-    public static Customer enterDataCustomer(){
+    public static Customer enterDataCustomer() {
+        String name;
+        String address;
+        int age;
+        int ssn;
 
-        //ERROR HANDLING NEED
+        boolean inputIsValid = false;
 
-        System.out.println("Enter name:");
-        String name = input.nextLine();
-        System.out.println("Enter address:");
-        String address = input.nextLine();
-        System.out.println("Enter age:");
-        int age = input.nextInt();
-        System.out.println("Enter SSN:");
-        int ssn = input.nextInt();
+        do {
+            try {
+                System.out.println("Enter name (First&Last no space):");
+                name = input.nextLine().trim();
+
+                if (!name.matches("[a-zA-Z]+")) {//only letters
+                    throw new InputMismatchException("Name must contain only letters.");
+                }
+
+                System.out.println("Enter address:");
+                address = input.nextLine().trim();
+
+                if (!address.matches("\\d{4}[a-zA-Z]*")) {//only 4 numbers and all letters
+                    throw new InputMismatchException("Address must start with four numbers followed by characters. Please Restart");
+                }
+
+                System.out.println("Enter age:");
+                age = input.nextInt();
+
+                System.out.println("Enter SSN:");
+                ssn = input.nextInt();
+
+                inputIsValid = true; // All inputs are valid, break out of the loop
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input: " + e.getMessage());
+                //input.nextLine(); // Consume the invalid input
+                name = null; // Reset name
+                address = null; // Reset address
+                age = 0; // Reset age
+                ssn = 0; // Reset ssn
+            }
+        } while (!inputIsValid);
 
         return new Customer(name, address, age, ssn);
     }
