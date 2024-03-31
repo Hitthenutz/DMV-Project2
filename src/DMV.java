@@ -12,6 +12,7 @@
  * from the rightful copyright owner.
  **/
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.random.RandomGenerator;
@@ -26,6 +27,7 @@ public class DMV {
     public static boolean y = true;
     public static int time;
     public static Random random = new Random();
+    public static ArrayList <Customer> customerList = new ArrayList<>();
 
 
     public static void main(String[] args) {
@@ -141,13 +143,18 @@ public class DMV {
                                 System.out.println("Please visit & follow: https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/instruction-permits/");
 
                             } else {
-                                System.out.println("Please submit all required documents");
+                                System.out.println("Please submit all required documents(Press Enter)");
+                                input.nextLine();
                                 currCustomer.addDebt(58.00);
-                                System.out.println("You now owe, " + currCustomer.getDebt() + " pay now or a debt will inquire on your account");
-                                System.out.println("Delivery Time: 1:00 hr"); // change into variable for time
-                                currCustomer.setcNum(random.nextInt(0,1000)); // get confirmation number
-                                System.out.println("Confirmation Number: " + currCustomer.getcNum()); //prints confirmation number
+                                System.out.println("You now owe, " + currCustomer.getDebt() + " pay now or a debt will inquire on your account (Press Enter) ");
+                                input.nextLine(); // clear buffer line
+                                System.out.println("Delivery Time: 1:00 hr (Press Enter) "); // change into variable for time
+                                input.nextLine();
+                                currCustomer.setConfirmationNumber(random.nextInt(100_000, 1_000_000)); // get confirmation number
+                                System.out.println("Confirmation Number: " + currCustomer.getConfirmationNumber() + "(Press Enter)"); //prints confirmation number
+                                input.nextLine();
                                 currCustomer.toString();
+                                customerList.add(currCustomer);
                             }
 
                             break;

@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Customer {
     private String name, address, plate, make, model;
     private int age;
-    private int ssn, cNum;
+    private int ssn, confirmationNumber;
     private String vin;
     private double debt;
 
@@ -34,11 +34,11 @@ public class Customer {
         this.ssn = ssn;
     }
 
-    public int getcNum() {
-        return cNum;
+    public int getConfirmationNumber() {
+        return confirmationNumber;
     }
-    public void setcNum(int cNum) {
-        this.cNum = cNum;
+    public void setConfirmationNumber(int confirmationNumber) {
+        this.confirmationNumber = confirmationNumber;
     }
     public String getName() {
         return name;
@@ -94,7 +94,6 @@ public class Customer {
         String address;
         int age;
         int ssn;
-        int cNum;
 
         boolean inputIsValid = false;
 
@@ -154,10 +153,18 @@ public class Customer {
         return new Customer(plate,make,model,year,vin);
     }
 
+    public boolean checkConfirmationNumber(int confirmationNumber){ // checks if customers have same confirmation number
+        return this.confirmationNumber == confirmationNumber;
+    }
+
     // Overriding toString() method to provide custom string representation of Customer object
 
     @Override
     public String toString() {
-        return "Customer Name: " + name + "\nCustomer Address: "+address + "\nCustomer Age: " + age + "\nCustomer ssm: " + ssn + "\nCustomer Confirmation Number: " + cNum ;
+        return "Customer Name: " + name +
+                "\nCustomer Address: "+address +
+                "\nCustomer Age: " + age +
+                "\nCustomer ssm: " + ssn +
+                "\nCustomer Confirmation Number: " + confirmationNumber ;
     }
 }
