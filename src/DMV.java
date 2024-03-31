@@ -139,14 +139,15 @@ public class DMV {
                             String j = input.nextLine();
                             if (j.equalsIgnoreCase("Yes")) {
                                 System.out.println("Please visit & follow: https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/instruction-permits/");
+
                             } else {
                                 System.out.println("Please submit all required documents");
                                 currCustomer.addDebt(58.00);
                                 System.out.println("You now owe, " + currCustomer.getDebt() + " pay now or a debt will inquire on your account");
                                 System.out.println("Delivery Time: 1:00 hr"); // change into variable for time
-                                int r = random.nextInt(0,1000);
-                                System.out.println("Confirmation Number: " + r);
-
+                                currCustomer.setcNum(random.nextInt(0,1000)); // get confirmation number
+                                System.out.println("Confirmation Number: " + currCustomer.getcNum()); //prints confirmation number
+                                currCustomer.toString();
                             }
 
                             break;

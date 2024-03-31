@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Customer {
     private String name, address, plate, make, model;
     private int age;
-    private int ssn;
+    private int ssn, cNum;
     private String vin;
     private double debt;
 
@@ -32,6 +32,13 @@ public class Customer {
     }
     public void setSsn(int ssn) {
         this.ssn = ssn;
+    }
+
+    public int getcNum() {
+        return cNum;
+    }
+    public void setcNum(int cNum) {
+        this.cNum = cNum;
     }
     public String getName() {
         return name;
@@ -87,6 +94,7 @@ public class Customer {
         String address;
         int age;
         int ssn;
+        int cNum;
 
         boolean inputIsValid = false;
 
@@ -147,8 +155,9 @@ public class Customer {
     }
 
     // Overriding toString() method to provide custom string representation of Customer object
+
     @Override
     public String toString() {
-        return "Name: " + name + ", Address: " + address + ", Age: " + age;
+        return "Customer Name: " + name + "\nCustomer Address: "+address + "\nCustomer Age: " + age + "\nCustomer ssm: " + ssn + "\nCustomer Confirmation Number: " + cNum ;
     }
 }
