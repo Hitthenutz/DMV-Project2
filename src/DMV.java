@@ -137,11 +137,11 @@ public class DMV {
 
                             break;
                         case 4://Permits
+                            String j;
                             System.out.println("Have you checked the Permit page on the DMV website?\nYes/No");
-                            String j = input.nextLine();
+                            j = input.nextLine();
                             if (j.equalsIgnoreCase("Yes")) {
                                 System.out.println("Please visit & follow: https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/instruction-permits/");
-
                             } else {
                                 System.out.println("Please submit all required documents(Press Enter)");
                                 input.nextLine();
@@ -151,7 +151,7 @@ public class DMV {
                                 System.out.println("Delivery Time: 1:00 hr (Press Enter) "); // change into variable for time
                                 input.nextLine();
                                 currCustomer.setConfirmationNumber(random.nextInt(100_000, 1_000_000)); // get confirmation number
-                                System.out.println("Confirmation Number: " + currCustomer.getConfirmationNumber() + "(Press Enter)"); //prints confirmation number
+                                System.out.println("Confirmation Number: " + currCustomer.getConfirmationNumber() + " (Press Enter)"); //prints confirmation number
                                 input.nextLine();
                                 currCustomer.toString();
                                 customerList.add(currCustomer);
