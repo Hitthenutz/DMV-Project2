@@ -20,20 +20,22 @@ import java.util.random.RandomGenerator;
 
 public class DMV {
 
-    /**Global Scanner**/
+    /**
+     * Global Scanner
+     **/
 
     public static Scanner input = new Scanner(System.in);
-    public static int x;
+    public static int x, j;
     public static boolean y = true;
     public static int time;
     public static Random random = new Random();
-    public static ArrayList <Customer> customerList = new ArrayList<>();
+    public static ArrayList<Customer> customerList = new ArrayList<>();
 
 
     public static void main(String[] args) {
         Customer currCustomer = new Customer();
 
-        TreeNode root = new TreeNode("DMV");
+        TreeNode<String> root = new TreeNode<>("DMV");
 
         /*
          * Level 1 of Tree Node
@@ -41,8 +43,8 @@ public class DMV {
          * License/ID
          */
 
-        TreeNode a1 = new TreeNode("Registration");
-        TreeNode a2 = new TreeNode("License/ID");
+        TreeNode<String> a1 = new TreeNode<>("Registration");
+        TreeNode<String> a2 = new TreeNode<>("License/ID");
 
         root.addChild(a1, a2);
 
@@ -53,16 +55,15 @@ public class DMV {
          * Check Status
          * License Plate/Decal/Placard
          */
-        TreeNode b1 = new TreeNode("Renew");
-        TreeNode b2 = new TreeNode("New Registration");
-        TreeNode b3 = new TreeNode("Check Registration Status");
-        TreeNode b4 = new TreeNode("License Plate/Decals/Placards");
+        TreeNode<String> b1 = new TreeNode<>("Renew");
+        TreeNode<String> b2 = new TreeNode<>("New Registration");
+        TreeNode<String> b3 = new TreeNode<>("Check Registration Status");
+        TreeNode<String> b4 = new TreeNode<>("License Plate/Decals/Placards");
 
-
-        TreeNode b5 = new TreeNode("Renew");
-        TreeNode b6 = new TreeNode("Apply for New DL");
-        TreeNode b7 = new TreeNode("Apply for Real ID");
-        TreeNode b8 = new TreeNode("Permits");
+        TreeNode<String> b5 = new TreeNode<>("Renew");
+        TreeNode<String> b6 = new TreeNode<>("Apply for New DL");
+        TreeNode<String> b7 = new TreeNode<>("Apply for Real ID");
+        TreeNode<String> b8 = new TreeNode<>("Permits");
 
 
         //adds all the level 2 nodes to level 1 in registration/License branch
@@ -90,6 +91,8 @@ public class DMV {
                 //System.out.println(curr.getData());
 
                 if (curr.getData().equals("Registration")) {
+                    currCustomer = Customer.enterDataCustomer();
+
                     System.out.println("What would you like to do in " + curr.getData());
                     for (int i = 0; i < curr.getChildren().size(); i++) {
                         System.out.println((i + 1) + ". " + curr.getChild(i).getData());
@@ -99,7 +102,6 @@ public class DMV {
                     switch (x) {
                         case 1://Renew
 
-                            Customer.enterDataCustomer();
 
                             break;
                         case 2://New Registration
@@ -116,8 +118,9 @@ public class DMV {
 
 
                     /****Enter Client Data stores into Customer Object***/
-                    currCustomer = Customer.enterDataCustomer();
                 } else if (curr.getData().equals("License/ID")) {
+
+                    currCustomer = Customer.enterDataCustomer(); // asks user for customer info, puts it into currCustomer Object
                     System.out.println("What would you like to do in " + curr.getData());
                     for (int i = 0; i < curr.getChildren().size(); i++) {
                         System.out.println((i + 1) + ". " + curr.getChild(i).getData());
@@ -126,7 +129,6 @@ public class DMV {
                     switch (x) {
                         case 1://Renew
 
-                            Customer.enterDataCustomer();
 
                             break;
                         case 2://Real ID
@@ -137,24 +139,35 @@ public class DMV {
 
                             break;
                         case 4://Permits
-                            String j;
-                            System.out.println("Have you checked the Permit page on the DMV website?\nYes/No");
-                            j = input.nextLine();
-                            if (j.equalsIgnoreCase("Yes")) {
-                                System.out.println("Please visit & follow: https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/instruction-permits/");
+
+                            System.out.println("Have you checked the Permit page on the DMV website?\n1.Yes\n2.No");
+                            j = input.nextInt();
+                            if (j == 2) {
+                                System.out.println();
+                                System.out.println("""
+                                        Please visit & follow: https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/instruction-permits/
+                                        Once all steps have been completed, continue here.
+                                        """);
+                                break;
                             } else {
-                                System.out.println("Please submit all required documents(Press Enter)");
+                                System.out.println("What type of permit are you applying for");
+                                System.out.println("Please submit all required documents (Press Enter)");
+                                input.nextLine();
                                 input.nextLine();
                                 currCustomer.addDebt(58.00);
-                                System.out.println("You now owe, " + currCustomer.getDebt() + " pay now or a debt will inquire on your account (Press Enter) ");
+                                System.out.println("You now owe, $" + currCustomer.getDebt() + " pay now or a debt will inquire on your account (Press Enter) ");
                                 input.nextLine(); // clear buffer line
                                 System.out.println("Delivery Time: 1:00 hr (Press Enter) "); // change into variable for time
                                 input.nextLine();
                                 currCustomer.setConfirmationNumber(random.nextInt(100_000, 1_000_000)); // get confirmation number
                                 System.out.println("Confirmation Number: " + currCustomer.getConfirmationNumber() + " (Press Enter)"); //prints confirmation number
                                 input.nextLine();
-                                currCustomer.toString();
                                 customerList.add(currCustomer);
+                                String w = currCustomer.toString();
+                                System.out.println(w);
+                                y = false; // just to stop loop NOT PERM
+
+                                //Stores the customer into the Customer array list
                             }
 
                             break;
@@ -169,6 +182,7 @@ public class DMV {
             } else {
                 System.out.println("Invalid input.");
             }
+
         }
     }
 

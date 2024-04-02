@@ -1,11 +1,10 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Customer {
-    private String name, address, plate, make, model;
+public class Customer extends Car {
+    private String name, address;
     private int age;
     private int ssn, confirmationNumber;
-    private String vin;
     private double debt;
 
     public static Scanner input = new Scanner(System.in);
@@ -18,12 +17,6 @@ public class Customer {
     }
     public Customer(){
 
-    }
-    public Customer(String plate, String make, String model, int year, String vin) {
-        this.plate = plate;
-        this.make = make;
-        this.model = model;
-        this.vin = vin;
     }
 
     // Getters and setters for customer attributes
@@ -58,30 +51,6 @@ public class Customer {
     public void setAge(int age) {
         this.age = age;
     }
-    public String getPlate() {
-        return plate;
-    }
-    public void setPlate(String plate) {
-        this.plate = plate;
-    }
-    public String getMake() {
-        return make;
-    }
-    public void setMake(String make) {
-        this.make = make;
-    }
-    public String getModel() {
-        return model;
-    }
-    public void setModel(String model) {
-        this.model = model;
-    }
-    public String getVin() {
-        return vin;
-    }
-    public void setVin(String vin) {
-        this.vin = vin;
-    }
     public double getDebt() {
         return debt;
     }
@@ -98,31 +67,34 @@ public class Customer {
         boolean inputIsValid = false;
 
         do {
-            try {
+            try { // Try Catch for error handling
+                System.out.println("Please complete a small questionnaire before proceeding ");
                 System.out.println("Enter name (First&Last no space):");
                 name = input.nextLine().trim();
 
-                if (!name.matches("[a-zA-Z]+")) {//only letters
-                    throw new InputMismatchException("Name must contain only letters.");
+                if (!name.matches("[a-zA-Z]+\\s[a-zA-Z]+")) {//matches one or more letters (first name & last name) Middle is a space.
+                    throw new InputMismatchException("Name must contain only letters.\n");
                 }
 
                 System.out.println("Enter address:");
                 address = input.nextLine().trim();
 
                 if (!address.matches("\\d{4}[a-zA-Z]*")) {//only 4 numbers and all letters
-                    throw new InputMismatchException("Address must start with four numbers followed by characters. Please Restart");
+                    throw new InputMismatchException("Address must start with four numbers followed by characters.\n");
                 }
+
 
                 System.out.println("Enter age:");
                 age = input.nextInt();
-
+                if (!(age > 1 && age >= 0)) {
+                    throw new InputMismatchException("Address must start with four numbers followed by characters.\n");
+                }
                 System.out.println("Enter SSN:");
                 ssn = input.nextInt();
 
                 inputIsValid = true; // All inputs are valid, break out of the loop
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input: " + e.getMessage());
-                //input.nextLine(); // Consume the invalid input
+                System.out.println("Invalid input: " + e.getMessage() + "\n");
                 name = null; // Reset name
                 address = null; // Reset address
                 age = 0; // Reset age
@@ -132,39 +104,20 @@ public class Customer {
 
         return new Customer(name, address, age, ssn);
     }
-    public static Customer enterDataCar(){
 
-        //ERROR HANDLING NEED
-
-        System.out.println("Enter plate number:");
-        //7 digit number
-        String plate = input.nextLine();
-        //?list all makes possible!
-        System.out.println("Enter make:");
-        String make = input.nextLine();
-        System.out.println("Enter model:");
-        //list all models of each car
-        String model = input.nextLine();
-        System.out.println("Enter year:");
-        int year = input.nextInt();
-        System.out.println("Enter VIN:");
-        //17Characters(letters & numbers)
-        String vin = input.nextLine();
-        return new Customer(plate,make,model,year,vin);
-    }
 
     public boolean checkConfirmationNumber(int confirmationNumber){ // checks if customers have same confirmation number
         return this.confirmationNumber == confirmationNumber;
     }
 
     // Overriding toString() method to provide custom string representation of Customer object
-
     @Override
     public String toString() {
-        return "Customer Name: " + name +
+
+        return  "Customer Name: " + name +
                 "\nCustomer Address: "+address +
                 "\nCustomer Age: " + age +
                 "\nCustomer ssm: " + ssn +
-                "\nCustomer Confirmation Number: " + confirmationNumber ;
+                "\nCustomer Confirmation Number: " + confirmationNumber;
     }
 }
