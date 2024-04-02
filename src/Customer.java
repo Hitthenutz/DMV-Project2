@@ -71,7 +71,7 @@ public class Customer extends Car {
                 System.out.println("Please complete a small questionnaire before proceeding ");
                 System.out.println("Enter name (First&Last no space):");
                 name = input.nextLine().trim();
-
+                                        //word|space|word
                 if (!name.matches("[a-zA-Z]+\\s[a-zA-Z]+")) {//matches one or more letters (first name & last name) Middle is a space.
                     throw new InputMismatchException("Name must contain only letters.\n");
                 }
@@ -79,16 +79,16 @@ public class Customer extends Car {
                 System.out.println("Enter address:");
                 address = input.nextLine().trim();
 
-                if (!address.matches("\\d{4}[a-zA-Z]*")) {//only 4 numbers and all letters
+                if (!address.matches("\\d{4}\\s[a-zA-Z]*")) {//only 4 numbers and all letters
                     throw new InputMismatchException("Address must start with four numbers followed by characters.\n");
                 }
-
 
                 System.out.println("Enter age:");
                 age = input.nextInt();
-                if (!(age > 1 && age >= 0)) {
+                if (!(age > 1)) {
                     throw new InputMismatchException("Address must start with four numbers followed by characters.\n");
                 }
+
                 System.out.println("Enter SSN:");
                 ssn = input.nextInt();
 
@@ -105,6 +105,15 @@ public class Customer extends Car {
         return new Customer(name, address, age, ssn);
     }
 
+    public Customer searchCustomer(){
+        boolean found;
+
+
+
+
+        return null;
+    }
+
 
     public boolean checkConfirmationNumber(int confirmationNumber){ // checks if customers have same confirmation number
         return this.confirmationNumber == confirmationNumber;
@@ -117,7 +126,7 @@ public class Customer extends Car {
         return  "Customer Name: " + name +
                 "\nCustomer Address: "+address +
                 "\nCustomer Age: " + age +
-                "\nCustomer ssm: " + ssn +
+                "\nCustomer SSN: " + ssn +
                 "\nCustomer Confirmation Number: " + confirmationNumber;
     }
 }
