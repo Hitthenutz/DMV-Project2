@@ -71,6 +71,21 @@ public class DMV {
         a2.addChild(b5, b6, b7, b8);
 
         while (y) {
+            System.out.println("1.Login\n2.Register");//(condition) ? (value if true) : (value if false).
+            x = input.nextInt();
+
+            if (x == 1){
+                System.out.println("Please enter your SSN to Login");
+                x = input.nextInt();
+                currCustomer = Customer.login(customerList, x);
+            }
+            if (x==2){
+                currCustomer = Customer.register();
+            }
+
+
+
+            currCustomer = Customer.enterDataCustomer();
             System.out.println("Welcome to the DMV, what can we do for you?");
             for (int i = 0; i < root.getChildren().size(); i++) {
                 System.out.println((i + 1) + ". " + root.getChild(i).getData());
@@ -120,7 +135,7 @@ public class DMV {
                     /****Enter Client Data stores into Customer Object***/
                 } else if (curr.getData().equals("License/ID")) {
 
-                    currCustomer = Customer.enterDataCustomer(); // asks user for customer info, puts it into currCustomer Object
+                    currCustomer = Customer.register(); // asks user for customer info, puts it into currCustomer Object
                     System.out.println("What would you like to do in " + curr.getData());
                     for (int i = 0; i < curr.getChildren().size(); i++) {
                         System.out.println((i + 1) + ". " + curr.getChild(i).getData());
@@ -151,6 +166,9 @@ public class DMV {
                                 break;
                             } else {
                                 System.out.println("What type of permit are you applying for");
+
+
+
                                 System.out.println("Please submit all required documents (Press Enter)");
                                 input.nextLine();
                                 input.nextLine();
