@@ -1,4 +1,6 @@
-import java.lang.reflect.Array;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -82,8 +84,8 @@ public class Customer {
             try { // Try Catch for error handling
 
                 /**NAME**/
-                System.out.println("Enter name (First&Last no space):");
-                name = input.nextLine();
+                System.out.println("Enter name (First&Last no space):\n");
+                name = input.nextLine().trim();
                                         //word|space|word
                 if (!name.matches("[a-zA-Z]+\\s[a-zA-Z]+")) {//matches one or more letters (first name & last name) Middle is a space.
                     throw new InputMismatchException("Name must contain only letters.\n");
@@ -94,7 +96,7 @@ public class Customer {
                 System.out.println("Enter address:");
                 address = input.nextLine().trim();
 
-                if (!address.matches("\\d{4}\\s[a-zA-Z]*")) {//only 4 numbers and all letters
+                if (!address.matches("\\d{4,5}\\s[a-zA-Z]*")) {//only 4 numbers and all letters
                     throw new InputMismatchException("Address must start with four numbers followed by characters.\n");
                 }
                 System.out.println(address);
@@ -103,7 +105,7 @@ public class Customer {
                 System.out.println("Enter age:");
                 age = input.nextInt();
                 if (!(age > 1)) {
-                    throw new InputMismatchException("Address must start with four numbers followed by characters.\n");
+                    throw new InputMismatchException("Address must start with 4-5 digits followed by characters.\n");
                 }
                 System.out.println(age);
 
@@ -136,8 +138,42 @@ public class Customer {
     }
 
 
-    public boolean checkConfirmationNumber(int confirmationNumber){ // checks if customers have same confirmation number
-        return Customer.confirmationNumber == confirmationNumber;
+    public boolean checkConfirmationNumber(int confirmationNumber) {
+        // File path
+        String filePath = "customerInfo.txt";
+
+        try {
+            // Create a FileReader object
+            FileReader fileReader = new FileReader(filePath);
+
+            // Wrap the FileReader in a BufferedReader for efficient reading
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            // Read the file line by line until reaching the end
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                // Split each line by whitespace to extract confirmation number
+                String[] parts = line.split("\\s+");
+                if (parts.length > 0) {
+                    // Convert the confirmation number from String to int
+                    int currConfirmationNumber = Integer.parseInt(parts[0]);
+
+                    // Check if the confirmation number matches
+                    if (currConfirmationNumber == confirmationNumber) {
+                        bufferedReader.close();
+                        return true; // Confirmation number found
+                    }
+                }
+            }
+
+            // Close the BufferedReader
+            bufferedReader.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading the file.");
+
+        }
+
+        return false; // Confirmation number not found
     }
 
     // Overriding toString() method to provide custom string representation of Customer object
@@ -148,6 +184,6 @@ public class Customer {
                 "\nCustomer Address: "+address +
                 "\nCustomer Age: " + age +
                 "\nCustomer SSN: " + ssn +
-                "\nCustomer Confirmation Number: " + confirmationNumber;
+                "\nCustomer Confirmation Number: " + confirmationNumber + "\n";
     }
 }

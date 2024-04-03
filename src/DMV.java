@@ -12,6 +12,9 @@
  * from the rightful copyright owner.
  **/
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -25,6 +28,9 @@ public class DMV {
      **/
 
     public static Scanner input = new Scanner(System.in);
+    public static File file = new File("customerInfo.txt");
+
+
     public static int x, j;
     public static boolean y = true;
     public static int time;
@@ -32,8 +38,12 @@ public class DMV {
     public static ArrayList<Customer> customerList = new ArrayList<>();
 
 
+
+
     public static void main(String[] args) {
         Customer currCustomer = new Customer();
+
+
 
         TreeNode<String> root = new TreeNode<>("DMV");
 
@@ -70,18 +80,19 @@ public class DMV {
         a1.addChild(b1, b2, b3, b4);
         a2.addChild(b5, b6, b7, b8);
 
-        while (y) {
-            System.out.println("1.Login\n2.Register");//(condition) ? (value if true) : (value if false).
-            x = input.nextInt();
+        System.out.println("1.Login\n2.Register");//(condition) ? (value if true) : (value if false).
+        x = input.nextInt();
 
-            if (x == 1){
-                System.out.println("Please enter your SSN to Login");
-                x = input.nextInt();
-                currCustomer = Customer.login(customerList, x);
-            }
-            if (x==2){
-                currCustomer = Customer.register();
-            }
+        if (x == 1){
+            System.out.println("Please enter your SSN to Login");
+            x = input.nextInt();
+            currCustomer = Customer.login(customerList, x);
+        }
+        if (x==2){
+            currCustomer = Customer.register();
+        }
+        while (y) {
+
 
 
 
@@ -90,6 +101,7 @@ public class DMV {
             for (int i = 0; i < root.getChildren().size(); i++) {
                 System.out.println((i + 1) + ". " + root.getChild(i).getData());
             }
+
             System.out.println("3. Exit");
 
             x = input.nextInt();
@@ -135,7 +147,7 @@ public class DMV {
                     /****Enter Client Data stores into Customer Object***/
                 } else if (curr.getData().equals("License/ID")) {
 
-                    currCustomer = Customer.register(); // asks user for customer info, puts it into currCustomer Object
+
                     System.out.println("What would you like to do in " + curr.getData());
                     for (int i = 0; i < curr.getChildren().size(); i++) {
                         System.out.println((i + 1) + ". " + curr.getChild(i).getData());
@@ -184,6 +196,22 @@ public class DMV {
                                 String w = currCustomer.toString();
                                 System.out.println(w);
                                 y = false; // just to stop loop NOT PERM
+
+                                try {
+                                    // Create a FileWriter object
+
+                                    FileWriter fileWriter = new FileWriter(file);
+
+                                    // Write data to the file
+                                    fileWriter.write(String.valueOf(currCustomer));
+
+                                    // Close the FileWriter object
+                                    fileWriter.close();
+
+                                    System.out.println("Data saved to file successfully!");
+                                } catch (IOException e) {
+                                    System.out.println("An error occurred while saving the file.");
+                                }
 
                                 //Stores the customer into the Customer array list
                             }
