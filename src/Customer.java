@@ -1,9 +1,11 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Customer {
     private static String name;
@@ -14,6 +16,8 @@ public class Customer {
     private static Car car; //Aggregation Relationship "has a"
     //Customer "has a"
 
+    private final Random random = new Random();
+
     public static Scanner input = new Scanner(System.in);
 
     public Customer(String name, String address, int age, int ssn, Car car) {
@@ -23,7 +27,8 @@ public class Customer {
         Customer.ssn = ssn;
         Customer.car = car;
     }
-    public Customer(){
+
+    public Customer() {
 
     }
 
@@ -32,8 +37,17 @@ public class Customer {
     public int getSsn() {
         return ssn;
     }
+
     public void setSsn(int ssn) {
         Customer.ssn = ssn;
+    }
+
+    public int generateConfirmationNumber() { //generates random cNum, if already taken, will do loop until a number is found that is not taken
+        int r = random.nextInt(100_000, 1_000_000);
+        while (!checkConfirmationNumber(r)) {
+            r = random.nextInt(100_000, 1_000_000);
+        }
+        return r;
     }
 
     public int getConfirmationNumber() {
@@ -71,9 +85,9 @@ public class Customer {
         customer = enterDataCustomer();
         return customer;
     }
-    public static Customer login(ArrayList<Customer> c, int ssn){
+    public static Customer login(int ssn){
         //log in with ssn
-        return searchCustomer(c,ssn);
+        return searchCustomer(ssn);
     }
 
     public static Customer enterDataCustomer() {
@@ -127,52 +141,53 @@ public class Customer {
         return new Customer(name, address, age, ssn, car);
     }
 
-    public static Customer searchCustomer(ArrayList<Customer> customers, int ssn){
-        for (Customer customer : customers) {
-            if (customer.getSsn() == ssn) {
-                return customer; // Found the customer, return it
+    public static Customer searchCustomer(int ssn){//Searches for the customer in the txt doc
+        Files fileHandler = new Files(new File("customerInfo.txt"));
+        try {
+            String content = fileHandler.read();
+            String[] lines = content.split("\\n");
+            for (String line : lines) {
+                String[] parts = line.split(": ");
+                if (parts.length == 6) { // Assuming each line has exactly 6 parts
+                    String name = parts[1].trim();
+                    String address = parts[3].trim();
+                    int age = Integer.parseInt(parts[5].trim());
+                    int customerSSN = Integer.parseInt(parts[7].trim());
+                    int confirmationNumber = Integer.parseInt(parts[9].trim());
+                    if (customerSSN == ssn) {
+                        return new Customer(name, address, age, customerSSN, null); // Creating a Customer object and returning it
+                    }
+                }
             }
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading the file.");
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid integer format: " + e.getMessage());
         }
+
         System.out.println("Customer Not Found");
-        return null;
+        return null; // Customer not found or error occurred
     }
 
 
     public boolean checkConfirmationNumber(int confirmationNumber) {
-        // File path
-        String filePath = "customerInfo.txt";
-
+        Files fileHandler = new Files(new File("customerInfo.txt"));
         try {
-            // Create a FileReader object
-            FileReader fileReader = new FileReader(filePath);
-
-            // Wrap the FileReader in a BufferedReader for efficient reading
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-            // Read the file line by line until reaching the end
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                // Split each line by whitespace to extract confirmation number
+            String content = fileHandler.read();
+            String[] lines = content.split("\\n");
+            for (String line : lines) {
                 String[] parts = line.split("\\s+");
+                //After splitting a line using ":" as the delimiter, the resulting array parts contains substrings representing different parts of the line.
                 if (parts.length > 0) {
-                    // Convert the confirmation number from String to int
                     int currConfirmationNumber = Integer.parseInt(parts[0]);
-
-                    // Check if the confirmation number matches
                     if (currConfirmationNumber == confirmationNumber) {
-                        bufferedReader.close();
                         return true; // Confirmation number found
                     }
                 }
             }
-
-            // Close the BufferedReader
-            bufferedReader.close();
         } catch (IOException e) {
             System.out.println("An error occurred while reading the file.");
-
         }
-
         return false; // Confirmation number not found
     }
 

@@ -13,12 +13,11 @@
  **/
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
-import java.util.random.RandomGenerator;
+
+
 
 
 public class DMV {
@@ -28,13 +27,15 @@ public class DMV {
      **/
 
     public static Scanner input = new Scanner(System.in);
-    public static File file = new File("customerInfo.txt");
+    public static String filePath = "customerInfo.txt";
+    public static File f = new File(filePath);
+    public static Files file = new Files(f);
+
 
 
     public static int x, j;
     public static boolean y = true;
     public static int time;
-    public static Random random = new Random();
     public static ArrayList<Customer> customerList = new ArrayList<>();
 
 
@@ -42,9 +43,6 @@ public class DMV {
 
     public static void main(String[] args) {
         Customer currCustomer = new Customer();
-
-
-
 
         TreeNode<String> root = new TreeNode<>("DMV");
 
@@ -87,7 +85,7 @@ public class DMV {
         if (x == 1){
             System.out.println("Please enter your SSN to Login");
             x = input.nextInt();
-            currCustomer = Customer.login(customerList, x);
+            currCustomer = Customer.login(x);
         }
         if (x==2){
             currCustomer = Customer.register();
@@ -190,24 +188,25 @@ public class DMV {
                                 input.nextLine(); // clear buffer line
                                 System.out.println("Delivery Time: 1:00 hr (Press Enter) "); // change into variable for time
                                 input.nextLine();
-                                currCustomer.setConfirmationNumber(random.nextInt(100_000, 1_000_000)); // get confirmation number
+                                currCustomer.setConfirmationNumber(currCustomer.generateConfirmationNumber()); // get confirmation number and checks if other people have same cNum
+
                                 System.out.println("Confirmation Number: " + currCustomer.getConfirmationNumber() + " (Press Enter)"); //prints confirmation number
                                 input.nextLine();
                                 customerList.add(currCustomer);
                                 String w = currCustomer.toString();
                                 System.out.println(w);
                                 y = false; // just to stop loop NOT PERM
-
                                 try {
                                     // Create a FileWriter object
-
-                                    FileWriter fileWriter = new FileWriter(file);
+                                    file.write(String.valueOf(currCustomer.toString()));
 
                                     // Write data to the file
-                                    fileWriter.write(String.valueOf(currCustomer));
+
+                                    //fileHandler.write( String.valueOf(currCustomer));
+
 
                                     // Close the FileWriter object
-                                    fileWriter.close();
+
 
                                     System.out.println("Data saved to file successfully!");
                                 } catch (IOException e) {

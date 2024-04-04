@@ -31,10 +31,9 @@ public class TreeNode<String> {
     }
 
     public void addChild(TreeNode... nodes) {
-        for (TreeNode node : nodes) {
+        for (TreeNode<String> node : nodes) {
             children.add(node);
-        }
-    }
+        }    }
 
     //returns index at which the thing called is found
     public int findChild(TreeNode node) {
