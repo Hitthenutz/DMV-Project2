@@ -42,7 +42,7 @@ public class DMV {
 
     public static void main(String[] args) {
         Customer currCustomer = new Customer();
-        
+
 
 
 
