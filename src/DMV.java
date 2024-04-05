@@ -181,15 +181,12 @@ public class DMV {
 
 
                                 System.out.println("Please submit all required documents (Press Enter)");
-                                input.nextLine();
-                                input.nextLine();
+                                input.nextLine(); // Clear the newline character left in the buffer
                                 currCustomer.addDebt(58.00);
-                                System.out.println("You now owe, $" + currCustomer.getDebt() + " pay now or a debt will inquire on your account (Press Enter) ");
-                                input.nextLine(); // clear buffer line
-                                System.out.println("Delivery Time: 1:00 hr (Press Enter) "); // change into variable for time
-                                input.nextLine();
-                                currCustomer.setConfirmationNumber(currCustomer.generateConfirmationNumber()); // get confirmation number and checks if other people have same cNum
-                                System.out.println("Confirmation Number: " + currCustomer.getConfirmationNumber() + " (Press Enter)"); //prints confirmation number
+                                System.out.println("Debt: $" + currCustomer.getDebt());
+                                System.out.println("Delivery Time: 1:00 hr"); // Change into variable for time if needed
+                                currCustomer.setConfirmationNumber(currCustomer.generateConfirmationNumber()); // Get confirmation number and check if other people have the same cNum
+                                System.out.println("Confirmation Number: " + currCustomer.getConfirmationNumber());System.out.println("Confirmation Number: " + currCustomer.getConfirmationNumber() + " (Press Enter)"); //prints confirmation number
                                 input.nextLine();
                                 customerList.add(currCustomer);
 

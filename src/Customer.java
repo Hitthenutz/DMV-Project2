@@ -13,7 +13,10 @@ public class Customer {
     private static Car car; //Aggregation Relationship "has a"
     //Customer "has a"
 
-    private final Random random = new Random();
+    private final Random random = new Random(System.currentTimeMillis());
+    //Because it generates the random # very fast, it could use the same seed, meaning it will generate the same random int
+    //you ensure that it uses a different seed each time the method is called, reducing the likelihood of generating
+    //the same confirmation number repeatedly.
 
     public static Scanner input = new Scanner(System.in);
 
@@ -107,7 +110,7 @@ public class Customer {
                 System.out.println("Enter address:");
                 address = input.nextLine().trim();
 
-                if (!address.matches("\\d{4,5}\\s[a-zA-Z]*")) {//only 4 numbers and all letters
+                if (!address.matches("\\d{4,5}\\s[a-zA-Z]*\\s[a-zA-Z]+")) {//only 4 numbers and all letters then str/rd/cir
                     throw new InputMismatchException("Address must start with four numbers followed by characters.\n");
                 }
                 System.out.println(address);
