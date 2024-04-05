@@ -24,15 +24,8 @@ public class Files {
     }
 
     public void write(String content) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
             writer.write(content);
-        }
-    }
-
-    public void clear() throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            writer.write("");
-
         }
     }
 }

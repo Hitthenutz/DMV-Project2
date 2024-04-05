@@ -189,31 +189,18 @@ public class DMV {
                                 System.out.println("Delivery Time: 1:00 hr (Press Enter) "); // change into variable for time
                                 input.nextLine();
                                 currCustomer.setConfirmationNumber(currCustomer.generateConfirmationNumber()); // get confirmation number and checks if other people have same cNum
-
                                 System.out.println("Confirmation Number: " + currCustomer.getConfirmationNumber() + " (Press Enter)"); //prints confirmation number
                                 input.nextLine();
                                 customerList.add(currCustomer);
-                                String w = currCustomer.toString();
-                                System.out.println(w);
-                                y = false; // just to stop loop NOT PERM
+
                                 try {
-                                    // Create a FileWriter object
-                                    file.write(String.valueOf(currCustomer.toString()));
-
-                                    // Write data to the file
-
-                                    //fileHandler.write( String.valueOf(currCustomer));
-
-
-                                    // Close the FileWriter object
-
-
+                                    file.write(currCustomer +"\n");
+                                    file.write("\n");
                                     System.out.println("Data saved to file successfully!");
                                 } catch (IOException e) {
                                     System.out.println("An error occurred while saving the file.");
                                 }
 
-                                //Stores the customer into the Customer array list
                             }
 
                             break;
