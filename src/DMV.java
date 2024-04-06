@@ -88,9 +88,6 @@ public class DMV {
                 System.out.println("Please enter your SSN to Login");
                 x = input.nextInt();
                 currCustomer = Customer.searchCustomer(x);
-                if (currCustomer == null) {
-                    z = true;
-                }
                 z = false;
             }
             if (x == 2) {
@@ -190,7 +187,6 @@ public class DMV {
                                 input.nextLine();
                                 System.out.println("Please in put all of your required documents: \nPress Enter");
                                 input.nextLine();
-                                assert currCustomer != null;
                                 currCustomer.addDebt(39.00);
                                 System.out.println("Cost: $" + currCustomer.getDebt());
                                 System.out.println("Your written test is scheduled next week on tuesday at 1pm.");
@@ -217,7 +213,6 @@ public class DMV {
 
                                 System.out.println("Please submit all required documents (Press Enter)");
                                 input.nextLine(); // Clear the newline character left in the buffer
-                                assert currCustomer != null;
                                 currCustomer.addDebt(58.00);
                                 System.out.println("Debt: $" + currCustomer.getDebt());
                                 System.out.println("Delivery Time: 1:00 hr"); // Change into variable for time if needed

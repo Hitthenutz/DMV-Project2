@@ -7,8 +7,8 @@ import java.util.*;
 public class Customer {
     private static String name;
     private static String address;
-    private static int age;
-    private static int ssn, confirmationNumber;
+    private static int ssn, confirmationNumber, age;
+    private static int fileTraverseSSN, fileTraverseName, filetraverseAge, fileTraverseAddress, fileTraverseConfirmationNumber, multi;
     private static double debt;
     private static Car car; //Aggregation Relationship "has a"
     //Customer "has a"
@@ -70,8 +70,6 @@ public class Customer {
     public void addDebt(double debt){
         Customer.debt += debt;
     } // setter but adding
-
-
     public static Customer register(){
         Customer customer;
         customer = enterDataCustomer();
@@ -131,35 +129,57 @@ public class Customer {
 
         return new Customer(name, address, age, ssn, car);
     }
-    public static Customer searchCustomer(int ssn){//Searches for the customer in the txt doc
+    public static Customer searchCustomer(int ssn){//Searches for the customer in the txt doc using SSN
         Files fileHandler = new Files(new File("customerInfo.txt"));
+//1        Customer Name: 1 1
+//2        Customer Address: 1234 wadaw waw
+//3        Customer Age: 12
+//4        Customer SSN: 12
+//5        Customer Confirmation Number: 123312
+//6
+//7        Customer Name: 2 2
         try {
-
             String content = fileHandler.read();
+
             String[] lines = content.split("\\n");
-
-
-            // Assuming confirmation number is on line 5 (index 4), you can split it using ":"
-            String[] confirmationParts = lines[4].split(": ");
-            if (confirmationParts.length == 2) {
-                int confirmationNumber = Integer.parseInt(confirmationParts[1].trim());
-
-                // Continue with your existing loop to search for customer by SSN
-                for (String line : lines) {
-                    String[] parts = line.split(": ");
-
-                    if (parts.length == 6) { // Assuming each line has exactly 6 parts
-                        String name = parts[1].trim();
-                        String address = parts[3].trim();
-                        int age = Integer.parseInt(parts[5].trim());
-                        int customerSSN = Integer.parseInt(parts[2].trim());
-
-                        if (customerSSN == ssn) {
-                            return new Customer(name, address, age, customerSSN);
-                        }
-                    }
-                }
+            for (String s : lines) {
+                System.out.println(s);
             }
+            // Assuming confirmation number is on line 5 (index 4), you can split it using ":"
+
+            multi = 6; //multiplier of every info
+
+            fileTraverseName = 1;
+            fileTraverseAddress = 2;
+            filetraverseAge = 3;
+            fileTraverseSSN = 4;
+            fileTraverseConfirmationNumber= 5;
+
+            for (int i = 0; i < multi; i++) {
+
+
+
+            }
+
+
+            String[] social = lines[fileTraverseSSN-1].split(":");
+            ssn = Integer.parseInt(social[1].trim());//0 is SSN : 1 is ##
+            //System.out.println(ssn + "YAYAYY");
+
+//            if (social.length == 2) {
+//                System.out.println(social[1]);
+//                int socialNum = Integer.parseInt(social[1].trim()); //LOCATION OF NUMBER
+//                // Continue with your existing loop to search for customer by SSN
+//
+//
+//                for (String line : lines) {
+//
+//
+//                    if (socialNum == ssn) {
+//                        return new Customer(name, address, age, socialNum);
+//                    }
+//                }
+//            }
         } catch (IOException e) {
             System.out.println("An error occurred while reading the file.");
         } catch (NumberFormatException e) {
@@ -167,7 +187,7 @@ public class Customer {
         }
 
         System.out.println("Customer Not Found");
-        return null; // Customer not found or error occurred
+        return new Customer(); // Customer not found or error occurred
     }
     public int generateConfirmationNumber() { //generates random cNum, if already taken, will do loop until a number is found that is not taken
         int r;
