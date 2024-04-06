@@ -194,11 +194,6 @@ public class DMV {
                             }
                                 break;
 
-<<<<<<< Updated upstream
-
-                            break;
-=======
->>>>>>> Stashed changes
                         case 4://Permits
 
                             System.out.println("Have you checked the Permit page on the DMV website?\n1.Yes\n2.No");
