@@ -188,7 +188,7 @@ public class DMV {
                                 assert currCustomer != null;
                                 currCustomer.addDebt(39.00);
                                 System.out.println("Cost: $" + currCustomer.getDebt());
-                                System.out.println("Your writen test is scheduled next week on tuesday at 1pm.");
+                                System.out.println("Your written test is scheduled next week on tuesday at 1pm.");
                                 System.out.println("Your confirmation number is: " + currCustomer.getConfirmationNumber());System.out.println("Confirmation Number: " + currCustomer.getConfirmationNumber() + " (Press Enter)"); //prints confirmation number
                                 input.nextLine();
                                 customerList.add(currCustomer);
