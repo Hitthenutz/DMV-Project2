@@ -88,9 +88,6 @@ public class DMV {
                 System.out.println("Please enter your SSN to Login");
                 x = input.nextInt();
                 currCustomer = Customer.searchCustomer(x);
-                if (currCustomer == null) {
-                    z = true;
-                }
                 z = false;
             }
             if (x == 2) {
