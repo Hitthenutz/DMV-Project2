@@ -77,7 +77,7 @@ public class Customer {
         customer = enterDataCustomer();
         return customer;
     }
-    public static Customer login(int ssn){
+    public static Customer login(int ssn) {
         //log in with ssn
         return searchCustomer(ssn);
     }
