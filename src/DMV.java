@@ -110,8 +110,6 @@ public class DMV {
                 TreeNode<String> curr = root.getChild(x - 1); // Correcting for array indexing
                 //stores the number the user selects. Uses number to follow Tree Structure
 
-                /***Error handling***/
-                //System.out.println(curr.getData());
 
                 if (curr.getData().equals("Registration")) {
                     currCustomer = Customer.enterDataCustomer();
@@ -180,6 +178,7 @@ public class DMV {
 
                                 System.out.println("Please submit all required documents (Press Enter)");
                                 input.nextLine(); // Clear the newline character left in the buffer
+                                assert currCustomer != null;
                                 currCustomer.addDebt(58.00);
                                 System.out.println("Debt: $" + currCustomer.getDebt());
                                 System.out.println("Delivery Time: 1:00 hr"); // Change into variable for time if needed
