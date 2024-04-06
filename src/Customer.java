@@ -155,7 +155,7 @@ public class Customer {
             fileTraverseSSN = 4;
             fileTraverseConfirmationNumber= 5;
 
-            for (int i = 0; i < multi; i) {
+            for (int i = 0; i < multi; i++) {
 
 
 
