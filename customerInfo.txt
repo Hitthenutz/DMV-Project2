@@ -1,0 +1,13 @@
+Customer Name: 1 1
+Customer Address: 1234 wadaw waw
+Customer Age: 12
+Customer SSN: 12
+Customer Confirmation Number: 123312
+
+Customer Name: 2 2
+Customer Address: 1234 wadawd str
+Customer Age: 12
+Customer SSN: 12
+Customer Confirmation Number: 673593
+
+

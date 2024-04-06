@@ -27,12 +27,15 @@ public class Customer {
         Customer.ssn = ssn;
         Customer.car = car;
     }
-
+    public Customer(String name, String address, int age, int ssn) {
+        Customer.name = name;
+        Customer.address = address;
+        Customer.age = age;
+        Customer.ssn = ssn;
+    }
     public Customer() {
 
     }
-
-
     // Getters and setters for customer attributes
     public int getSsn() {
         return ssn;
@@ -42,20 +45,7 @@ public class Customer {
         Customer.ssn = ssn;
     }
 
-    public int generateConfirmationNumber() { //generates random cNum, if already taken, will do loop until a number is found that is not taken
-        int r = random.nextInt(100_000, 1_000_000);
-        while (!checkConfirmationNumber(r)) {
-            r = random.nextInt(100_000, 1_000_000);
-        }
-        return r;
-    }
 
-    public int getConfirmationNumber() {
-        return confirmationNumber;
-    }
-    public void setConfirmationNumber(int confirmationNumber) {
-        Customer.confirmationNumber = confirmationNumber;
-    }
     public String getName() {
         return name;
     }
@@ -80,6 +70,8 @@ public class Customer {
     public void addDebt(double debt){
         Customer.debt += debt;
     } // setter but adding
+
+
     public static Customer register(){
         Customer customer;
         customer = enterDataCustomer();
@@ -89,7 +81,6 @@ public class Customer {
         //log in with ssn
         return searchCustomer(ssn);
     }
-
     public static Customer enterDataCustomer() {
 
         boolean inputIsValid = false;
@@ -140,30 +131,31 @@ public class Customer {
 
         return new Customer(name, address, age, ssn, car);
     }
-
     public static Customer searchCustomer(int ssn){//Searches for the customer in the txt doc
         Files fileHandler = new Files(new File("customerInfo.txt"));
 
         try {
             String content = fileHandler.read();
             String[] lines = content.split("\\n");
-            for (String line : lines) {
-                String[] parts = line.split(": ");
-                if (parts.length == 6) { // Assuming each line has exactly 6 parts
-                    String name = parts[1].trim();
-                    String address = parts[3].trim();
-                    int age = Integer.parseInt(parts[5].trim());
-                    System.out.println(parts[0].trim());
-                    System.out.println(parts[1].trim());
-                    System.out.println(parts[2].trim());
-                    System.out.println(parts[3].trim());
-                    System.out.println(parts[4].trim());
-                    System.out.println(parts[5].trim());
 
-                    int customerSSN = Integer.parseInt(parts[2].trim());
-                    int confirmationNumber = Integer.parseInt(parts[5].trim());
-                    if (customerSSN == ssn) {
-                        return new Customer(name, address, age, customerSSN, null); // Creating a Customer object and returning it
+            // Assuming confirmation number is on line 5 (index 4), you can split it using ":"
+            String[] confirmationParts = lines[4].split(": ");
+            if (confirmationParts.length == 2) {
+                int confirmationNumber = Integer.parseInt(confirmationParts[1].trim());
+
+                // Continue with your existing loop to search for customer by SSN
+                for (String line : lines) {
+                    String[] parts = line.split(": ");
+
+                    if (parts.length == 6) { // Assuming each line has exactly 6 parts
+                        String name = parts[1].trim();
+                        String address = parts[3].trim();
+                        int age = Integer.parseInt(parts[5].trim());
+                        int customerSSN = Integer.parseInt(parts[2].trim());
+
+                        if (customerSSN == ssn) {
+                            return new Customer(name, address, age, customerSSN);
+                        }
                     }
                 }
             }
@@ -176,8 +168,20 @@ public class Customer {
         System.out.println("Customer Not Found");
         return null; // Customer not found or error occurred
     }
+    public int generateConfirmationNumber() { //generates random cNum, if already taken, will do loop until a number is found that is not taken
+        int r;
+        do {
+            r = random.nextInt(100_000, 1_000_000);
+        } while (checkConfirmationNumber(r)); // Loop until a unique confirmation number is generated
+        return r;
 
-
+    }
+    public int getConfirmationNumber() {
+        return confirmationNumber;
+    }
+    public void setConfirmationNumber(int confirmationNumber) {
+        Customer.confirmationNumber = confirmationNumber;
+    }
     /****ERROR******/
     public boolean checkConfirmationNumber(int confirmationNumber) {
         try (BufferedReader br = new BufferedReader(new FileReader("customerInfo.txt"))) {
@@ -195,9 +199,10 @@ public class Customer {
                 }
             }
         } catch (IOException | NumberFormatException e) {
+            // Log the error for debugging purposes
             System.out.println("An error occurred while reading the file: " + e.getMessage());
         }
-        return false; // Confirmation number not found
+        return false; // Confirmation number not found or error occurred
     }
 
     // Overriding toString() method to provide custom string representation of Customer object

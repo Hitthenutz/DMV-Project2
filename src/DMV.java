@@ -85,17 +85,14 @@ public class DMV {
         if (x == 1){
             System.out.println("Please enter your SSN to Login");
             x = input.nextInt();
-            currCustomer = Customer.login(x);
+           currCustomer = Customer.searchCustomer(x);
         }
         if (x==2){
-            currCustomer = Customer.register();
+            currCustomer = Customer.enterDataCustomer();
         }
+
         while (y) {
 
-
-
-
-            currCustomer = Customer.enterDataCustomer();
             System.out.println("Welcome to the DMV, what can we do for you?");
             for (int i = 0; i < root.getChildren().size(); i++) {
                 System.out.println((i + 1) + ". " + root.getChild(i).getData());
@@ -110,7 +107,7 @@ public class DMV {
 
             //curr holds current node
             if (x >= 1 && x <= root.getChildren().size()) {
-                TreeNode curr = root.getChild(x - 1); // Correcting for array indexing
+                TreeNode<String> curr = root.getChild(x - 1); // Correcting for array indexing
                 //stores the number the user selects. Uses number to follow Tree Structure
 
                 /***Error handling***/
@@ -163,6 +160,7 @@ public class DMV {
                             break;
                         case 3://New DL
 
+
                             break;
                         case 4://Permits
 
@@ -185,11 +183,11 @@ public class DMV {
                                 currCustomer.addDebt(58.00);
                                 System.out.println("Debt: $" + currCustomer.getDebt());
                                 System.out.println("Delivery Time: 1:00 hr"); // Change into variable for time if needed
-                                currCustomer.setConfirmationNumber(currCustomer.generateConfirmationNumber()); // Get confirmation number and check if other people have the same cNum
-                                System.out.println("Confirmation Number: " + currCustomer.getConfirmationNumber());System.out.println("Confirmation Number: " + currCustomer.getConfirmationNumber() + " (Press Enter)"); //prints confirmation number
-                                input.nextLine();
-                                customerList.add(currCustomer);
 
+                                int a = currCustomer.generateConfirmationNumber();
+                                currCustomer.setConfirmationNumber(a); // Get confirmation number and check if other people have the same cNum
+                                System.out.println("Confirmation Number: " + currCustomer.getConfirmationNumber());
+                                customerList.add(currCustomer);
                                 try {
                                     file.write(currCustomer +"\n");
                                     file.write("\n");
