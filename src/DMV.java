@@ -132,7 +132,19 @@ public class DMV {
 
                             break;
                         case 3://Check Registration Status
+                            System.out.println("Have you checked the Registration Status page on our DMV website?\n1.Yes\n2.No");
+                            input.nextLine();
+                            if (j == 2) {
+                                System.out.println("""
+                                        Please visit & follow: https://www.dmv.ca.gov/portal/vehicle-registration/vehicle-registration-status/
+                                        You can now check your registration entirely online.
+                                        """);
 
+                                break;
+                            }
+                            else {
+                                System.out.println("You have successfully checked your registration status.");
+                            }
                             break;
                         case 4://License plate/decal/placard
 
@@ -159,9 +171,35 @@ public class DMV {
 
                             break;
                         case 3://New DL
+                            System.out.println("Have you checked the Drivers License page on our DMV website?\n1.Yes\n2.No");
+                            j = input.nextInt();
+                            if (j == 2) {
+                                System.out.println("""
+                                        Please visit & follow: https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/dl-id-online-app-edl-44/
+                                        Once all steps have been completed, continue here.
+                                        """);
 
+                               break;
+                            }
+                            else {
+                                System.out.println("The following is only for those over 18 years of age:\nWhat class drivers license are you applying for?");
+                                input.nextLine();
+                                System.out.println("Please in put all of your required documents: \nPress Enter");
+                                input.nextLine();
+                                currCustomer.addDebt(39.00);
+                                System.out.println("Cost: $" + currCustomer.getDebt());
+                                System.out.println("Your writen test is scheduled next week on tuesday at 1pm.");
+                                System.out.println("Your confirmation number is: " + currCustomer.getConfirmationNumber());System.out.println("Confirmation Number: " + currCustomer.getConfirmationNumber() + " (Press Enter)"); //prints confirmation number
+                                input.nextLine();
+                                customerList.add(currCustomer);
+                            }
+                                break;
+
+<<<<<<< Updated upstream
 
                             break;
+=======
+>>>>>>> Stashed changes
                         case 4://Permits
 
                             System.out.println("Have you checked the Permit page on the DMV website?\n1.Yes\n2.No");
