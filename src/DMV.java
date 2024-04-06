@@ -126,6 +126,7 @@ public class DMV {
 
                             break;
                         case 2://New Registration
+                            //penut
 
 
                             break;
