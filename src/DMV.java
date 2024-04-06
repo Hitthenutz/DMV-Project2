@@ -34,7 +34,7 @@ public class DMV {
 
 
     public static int x, j;
-    public static boolean y = true;
+    public static boolean y,z = true;
     public static int time;
     public static ArrayList<Customer> customerList = new ArrayList<>();
 
@@ -70,8 +70,8 @@ public class DMV {
         TreeNode<String> b4 = new TreeNode<>("License Plate/Decals/Placards");
 
         TreeNode<String> b5 = new TreeNode<>("Renew");
-        TreeNode<String> b6 = new TreeNode<>("Apply for New DL");
-        TreeNode<String> b7 = new TreeNode<>("Apply for Real ID");
+        TreeNode<String> b6 = new TreeNode<>("Apply for Real ID");
+        TreeNode<String> b7 = new TreeNode<>("Apply for New DL");
         TreeNode<String> b8 = new TreeNode<>("Permits");
 
 
@@ -79,16 +79,24 @@ public class DMV {
         a1.addChild(b1, b2, b3, b4);
         a2.addChild(b5, b6, b7, b8);
 
-        System.out.println("1.Login\n2.Register");//(condition) ? (value if true) : (value if false).
-        x = input.nextInt();
 
-        if (x == 1){
-            System.out.println("Please enter your SSN to Login");
+        while(z) {
+            System.out.println("1.Login\n2.Register");//(condition) ? (value if true) : (value if false).
             x = input.nextInt();
-           currCustomer = Customer.searchCustomer(x);
-        }
-        if (x==2){
-            currCustomer = Customer.enterDataCustomer();
+
+            if (x == 1) {
+                System.out.println("Please enter your SSN to Login");
+                x = input.nextInt();
+                currCustomer = Customer.searchCustomer(x);
+                if (currCustomer == null) {
+                    z = true;
+                }
+                z = false;
+            }
+            if (x == 2) {
+                currCustomer = Customer.enterDataCustomer();
+                z = false;
+            }
         }
 
         while (y) {
@@ -112,8 +120,6 @@ public class DMV {
 
 
                 if (curr.getData().equals("Registration")) {
-                    currCustomer = Customer.enterDataCustomer();
-
                     System.out.println("What would you like to do in " + curr.getData());
                     for (int i = 0; i < curr.getChildren().size(); i++) {
                         System.out.println((i + 1) + ". " + curr.getChild(i).getData());
@@ -153,8 +159,6 @@ public class DMV {
 
                     /****Enter Client Data stores into Customer Object***/
                 } else if (curr.getData().equals("License/ID")) {
-
-
                     System.out.println("What would you like to do in " + curr.getData());
                     for (int i = 0; i < curr.getChildren().size(); i++) {
                         System.out.println((i + 1) + ". " + curr.getChild(i).getData());
@@ -180,6 +184,7 @@ public class DMV {
 
                                break;
                             }
+
                             else {
                                 System.out.println("The following is only for those over 18 years of age:\nWhat class drivers license are you applying for?");
                                 input.nextLine();
@@ -188,7 +193,7 @@ public class DMV {
                                 assert currCustomer != null;
                                 currCustomer.addDebt(39.00);
                                 System.out.println("Cost: $" + currCustomer.getDebt());
-                                System.out.println("Your writen test is scheduled next week on tuesday at 1pm.");
+                                System.out.println("Your written test is scheduled next week on tuesday at 1pm.");
                                 System.out.println("Your confirmation number is: " + currCustomer.getConfirmationNumber());System.out.println("Confirmation Number: " + currCustomer.getConfirmationNumber() + " (Press Enter)"); //prints confirmation number
                                 input.nextLine();
                                 customerList.add(currCustomer);

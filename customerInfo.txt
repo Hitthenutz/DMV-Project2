@@ -10,4 +10,10 @@ Customer Age: 12
 Customer SSN: 12
 Customer Confirmation Number: 673593
 
+Customer Name: Matt Quan
+Customer Address: 1234 wadaw wa
+Customer Age: 12
+Customer SSN: 12
+Customer Confirmation Number: 917115
+
 

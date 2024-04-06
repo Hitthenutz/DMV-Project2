@@ -89,22 +89,22 @@ public class Customer {
             try { // Try Catch for error handling
 
                 /**NAME**/
-                System.out.println("Enter name (First & Last - Add Space):\n"); //said no space, but that causes error changed to avoid confusion
+                System.out.println("Enter name (First & Last):\n"); //said no space, but that causes error changed to avoid confusion
                 name = input.nextLine().trim();
                                         //word|space|word
                 if (!name.matches("[a-zA-Z]+\\s[a-zA-Z]+")) {//matches one or more letters (first name & last name) Middle is a space.
                     throw new InputMismatchException("Name must contain only letters.\n");
                 }
-                System.out.println(name);
+                System.out.println(name); //Error Handle
 
                 /**ADDRESS**/
                 System.out.println("Enter address:");
                 address = input.nextLine().trim();
 
                 if (!address.matches("\\d{4,5}\\s[a-zA-Z]*\\s[a-zA-Z]+")) {//only 4 numbers and all letters then str/rd/cir
-                    throw new InputMismatchException("Address must start with four numbers followed by characters.\n");
+                    throw new InputMismatchException("Example: 1111 YourMom Str\n");
                 }
-                System.out.println(address);
+                System.out.println(address); //Error Handle
 
                 /**AGE**/
                 System.out.println("Enter age:");
@@ -112,12 +112,12 @@ public class Customer {
                 if (!(age > 1)) {
                     throw new InputMismatchException("Address must start with 4-5 digits followed by characters.\n");
                 }
-                System.out.println(age);
+                System.out.println(age); //Error Handle
 
                 /**SSN**/
                 System.out.println("Enter SSN:");
                 ssn = input.nextInt();
-                System.out.println(ssn);
+                System.out.println(ssn); //Error Handle
 
                 inputIsValid = true; // All inputs are valid, break out of the loop
             } catch (InputMismatchException e) {
@@ -133,10 +133,11 @@ public class Customer {
     }
     public static Customer searchCustomer(int ssn){//Searches for the customer in the txt doc
         Files fileHandler = new Files(new File("customerInfo.txt"));
-
         try {
+
             String content = fileHandler.read();
             String[] lines = content.split("\\n");
+
 
             // Assuming confirmation number is on line 5 (index 4), you can split it using ":"
             String[] confirmationParts = lines[4].split(": ");
@@ -172,7 +173,8 @@ public class Customer {
         int r;
         do {
             r = random.nextInt(100_000, 1_000_000);
-        } while (checkConfirmationNumber(r)); // Loop until a unique confirmation number is generated
+        }
+        while (checkConfirmationNumber(r)); // Loop until a unique confirmation number is generated
         return r;
 
     }
@@ -204,11 +206,9 @@ public class Customer {
         }
         return false; // Confirmation number not found or error occurred
     }
-
     // Overriding toString() method to provide custom string representation of Customer object
     @Override
     public String toString() {
-
         return  "Customer Name: " + name +
                 "\nCustomer Address: "+address +
                 "\nCustomer Age: " + age +
