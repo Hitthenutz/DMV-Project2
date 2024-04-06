@@ -185,6 +185,7 @@ public class DMV {
                                 input.nextLine();
                                 System.out.println("Please in put all of your required documents: \nPress Enter");
                                 input.nextLine();
+                                assert currCustomer != null;
                                 currCustomer.addDebt(39.00);
                                 System.out.println("Cost: $" + currCustomer.getDebt());
                                 System.out.println("Your writen test is scheduled next week on tuesday at 1pm.");
@@ -193,7 +194,6 @@ public class DMV {
                                 customerList.add(currCustomer);
                             }
                                 break;
-
                         case 4://Permits
 
                             System.out.println("Have you checked the Permit page on the DMV website?\n1.Yes\n2.No");
