@@ -70,8 +70,6 @@ public class Customer {
     public void addDebt(double debt){
         Customer.debt += debt;
     } // setter but adding
-
-
     public static Customer register(){
         Customer customer;
         customer = enterDataCustomer();
@@ -142,35 +140,46 @@ public class Customer {
 //7        Customer Name: 2 2
         try {
             String content = fileHandler.read();
-            String[] lines = content.split("\n");
-            System.out.println(Arrays.toString(lines));
+
+            String[] lines = content.split("\\n");
+            for (String s : lines) {
+                System.out.println(s);
+            }
             // Assuming confirmation number is on line 5 (index 4), you can split it using ":"
 
             multi = 6; //multiplier of every info
+
             fileTraverseName = 1;
             fileTraverseAddress = 2;
             filetraverseAge = 3;
             fileTraverseSSN = 4;
             fileTraverseConfirmationNumber= 5;
 
-            String[] social = lines[fileTraverseSSN].split(": ");
-            name = Arrays.toString(lines[1+fileTraverseSSN].split(":"));
+            for (int i = 0; i < multi; i) {
 
 
-            if (social.length == 2) {
-                System.out.println(social[1]);
-                int socialNum = Integer.parseInt(social[1].trim()); //LOCATION OF NUMBER
-                // Continue with your existing loop to search for customer by SSN
 
-
-                for (String line : lines) {
-
-
-                    if (socialNum == ssn) {
-                        return new Customer(name, address, age, socialNum);
-                    }
-                }
             }
+
+
+            String[] social = lines[fileTraverseSSN-1].split(":");
+            ssn = Integer.parseInt(social[1].trim());//0 is SSN : 1 is ##
+            //System.out.println(ssn + "YAYAYY");
+
+//            if (social.length == 2) {
+//                System.out.println(social[1]);
+//                int socialNum = Integer.parseInt(social[1].trim()); //LOCATION OF NUMBER
+//                // Continue with your existing loop to search for customer by SSN
+//
+//
+//                for (String line : lines) {
+//
+//
+//                    if (socialNum == ssn) {
+//                        return new Customer(name, address, age, socialNum);
+//                    }
+//                }
+//            }
         } catch (IOException e) {
             System.out.println("An error occurred while reading the file.");
         } catch (NumberFormatException e) {
