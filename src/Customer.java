@@ -206,11 +206,9 @@ public class Customer {
         }
         return false; // Confirmation number not found or error occurred
     }
-
     // Overriding toString() method to provide custom string representation of Customer object
     @Override
     public String toString() {
-
         return  "Customer Name: " + name +
                 "\nCustomer Address: "+address +
                 "\nCustomer Age: " + age +
