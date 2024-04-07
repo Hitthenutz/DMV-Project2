@@ -184,9 +184,22 @@ public class DMV {
 
                             break;
                         case 2:/*************REAL ID***********************/
-
-
+                            System.out.println("Have you checked the Real ID page on our DMV website?\n1.Yes\n2.No");
+                            j = input.nextInt();
+                            if (j == 2) {
+                                System.out.println("""
+                                        Please visit & follow: https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/real-id/
+                                        Once all steps have been completed, continue here.
+                                        """);
+                                break;
+                            }
+                                
+                            else {
+                                
+                            }
+                            
                             break;
+                            
                         case 3:/*************NEW DL***********************/
                             System.out.println("Have you checked the Drivers License page on our DMV website?\n1.Yes\n2.No");
                             x = input.nextInt();
