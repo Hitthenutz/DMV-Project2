@@ -1,5 +1,6 @@
 /**
  * Matthew Quan
+ * Lizette Hernandez
  * <p>
  * <p>
  * <p>
@@ -124,7 +125,7 @@ public class DMV {
 
                             break;
                         case 2://New Registration
-                            //penut
+
 
 
                             break;
@@ -180,6 +181,7 @@ public class DMV {
                             else {
                                 System.out.println("The following is only for those over 18 years of age:\nWhat class drivers license are you applying for?");
                                 input.nextLine();
+                                input.nextLine();
                                 System.out.println("Please in put all of your required documents: \nPress Enter");
                                 input.nextLine();
                                 assert currCustomer != null;
@@ -187,9 +189,11 @@ public class DMV {
                                 currCustomer.addDebt(39.00);
                                 System.out.println("Cost: $" + currCustomer.getDebt());
                                 System.out.println("Your written test is scheduled next week on tuesday at 1pm.");
-                                System.out.println("Your confirmation number is: " + currCustomer.getConfirmationNumber());System.out.println("Confirmation Number: " + currCustomer.getConfirmationNumber() + " (Press Enter)"); //prints confirmation number
+                                System.out.println("Your confirmation number is: " + currCustomer.getConfirmationNumber());
                                 input.nextLine();
+                                int s = currCustomer.generateConfirmationNumber();
                                 customerList.add(currCustomer);
+                                //to enclose
                             }
                                 break;
                         case 4://Permits
