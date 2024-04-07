@@ -138,7 +138,6 @@ public class Customer {
 
         return new Customer(name, address, age, ssn);
     }
-
     public static Customer searchCustomer(int ssn) {//Searches for the customer in the txt doc using SSN
         Files fileHandler = new Files(new File("customerInfo.txt"));
         String name;
@@ -207,7 +206,6 @@ public class Customer {
         return null;
         //Asserts are because of this
     }
-
     public int generateConfirmationNumber() { //generates random cNum, if already taken, will do loop until a number is found that is not taken
         int r;
         do {
@@ -217,11 +215,9 @@ public class Customer {
         return r;
 
     }
-
     public int getConfirmationNumber() {
         return confirmationNumber;
     }
-
     public void setConfirmationNumber(int confirmationNumber) {
         Customer.confirmationNumber = confirmationNumber;
     }
