@@ -140,7 +140,9 @@ public class DMV {
                                 System.out.println("You have successfully checked your registration status.");
                             }
                             break;
+                            
                         case 4://License plate/decal/placard
+                            System.out.println("")
 
                             break;
                     }
