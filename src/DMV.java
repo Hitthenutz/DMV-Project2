@@ -23,10 +23,6 @@ import java.util.Scanner;
 
 public class DMV {
 
-    /**
-     * Global Scanner
-     **/
-
     public static Scanner input = new Scanner(System.in);
     public static String filePath = "customerInfo.txt";
     public static File f = new File(filePath);
@@ -177,7 +173,6 @@ public class DMV {
 
                                break;
                             }
-
                             else {
                                 System.out.println("The following is only for those over 18 years of age:\nWhat class drivers license are you applying for?");
                                 input.nextLine();
