@@ -17,17 +17,4 @@ Customer SSN: 1222
 Customer Confirmation Number: 917115
 
 
-Customer Name: wad wad
-Customer Address: 1234 wadaw waw
-Customer Age: 123
-Customer SSN: 12
-Customer Confirmation Number: 749484
-
-
-Customer Name: wad wad
-Customer Address: 1234 wadaw waw
-Customer Age: 123
-Customer SSN: 12
-Customer Confirmation Number: 955039
-
 
