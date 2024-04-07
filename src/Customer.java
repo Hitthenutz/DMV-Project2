@@ -96,7 +96,7 @@ public class Customer {
             try { // Try Catch for error handling
 
                 /**NAME**/
-                System.out.println("Enter name (First & Last):\n"); //said no space, but that causes error changed to avoid confusion
+                System.out.println("Enter name (First & Last):"); //said no space, but that causes error changed to avoid confusion
                 name = input.nextLine().trim();
                 //word|space|word
                 if (!name.matches("[a-zA-Z]+\\s[a-zA-Z]+")) {//matches one or more letters (first name & last name) Middle is a space.
