@@ -34,7 +34,7 @@ public class DMV {
 
 
     public static int x, j;
-    public static boolean y,z = true;
+    public static boolean y = true;
     public static int time;
     public static ArrayList<Customer> customerList = new ArrayList<>();
 
@@ -80,21 +80,20 @@ public class DMV {
         a2.addChild(b5, b6, b7, b8);
 
 
-        while(z) {
+
             System.out.println("1.Login\n2.Register");//(condition) ? (value if true) : (value if false).
             x = input.nextInt();
-
             if (x == 1) {
                 System.out.println("Please enter your SSN to Login");
                 x = input.nextInt();
                 currCustomer = Customer.searchCustomer(x);
-                z = false;
-            }
-            if (x == 2) {
+            } else if (x == 2) {
                 currCustomer = Customer.enterDataCustomer();
-                z = false;
+            } else {
+                System.out.println("Invalid choice. Exiting");
+                return;
             }
-        }
+
 
         while (y) {
 
@@ -187,6 +186,8 @@ public class DMV {
                                 input.nextLine();
                                 System.out.println("Please in put all of your required documents: \nPress Enter");
                                 input.nextLine();
+                                assert currCustomer != null;
+                                //assert bc of searchCustomer null
                                 currCustomer.addDebt(39.00);
                                 System.out.println("Cost: $" + currCustomer.getDebt());
                                 System.out.println("Your written test is scheduled next week on tuesday at 1pm.");
@@ -213,18 +214,20 @@ public class DMV {
 
                                 System.out.println("Please submit all required documents (Press Enter)");
                                 input.nextLine(); // Clear the newline character left in the buffer
+                                assert currCustomer != null;
+                                //assert bc of searchCustomer null
                                 currCustomer.addDebt(58.00);
                                 System.out.println("Debt: $" + currCustomer.getDebt());
                                 System.out.println("Delivery Time: 1:00 hr"); // Change into variable for time if needed
 
                                 int a = currCustomer.generateConfirmationNumber();
                                 currCustomer.setConfirmationNumber(a); // Get confirmation number and check if other people have the same cNum
-                                System.out.println("Confirmation Number: " + currCustomer.getConfirmationNumber());
+                                System.out.println("Confirmation Number: " + currCustomer.getConfirmationNumber()+"\n");
                                 customerList.add(currCustomer);
                                 try {
                                     file.write(currCustomer +"\n");
                                     file.write("\n");
-                                    System.out.println("Data saved to file successfully!");
+                                    System.out.println("Data saved to file successfully!\n");
                                 } catch (IOException e) {
                                     System.out.println("An error occurred while saving the file.");
                                 }
@@ -240,8 +243,9 @@ public class DMV {
                 }
 
                 // Add other conditions for different actions as needed
-            } else {
-                System.out.println("Invalid input.");
+            } else if (x==3){
+                System.out.println("Exiting Now...");
+               System.exit(0);
             }
 
         }
