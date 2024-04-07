@@ -8,7 +8,6 @@ public class Customer {
     private static String name;
     private static String address;
     private static int ssn, confirmationNumber, age;
-    private static int fileTraverseSSN, fileTraverseName, filetraverseAge, fileTraverseAddress, fileTraverseConfirmationNumber, multi;
     private static double debt;
     private static Car car; //Aggregation Relationship "has a"
     //Customer "has a"
@@ -27,15 +26,25 @@ public class Customer {
         Customer.ssn = ssn;
         Customer.car = car;
     }
+
     public Customer(String name, String address, int age, int ssn) {
         Customer.name = name;
         Customer.address = address;
         Customer.age = age;
         Customer.ssn = ssn;
     }
+    public Customer(String name, String address, int age, int ssn,int confirmationNumber) {
+        Customer.name = name;
+        Customer.address = address;
+        Customer.age = age;
+        Customer.ssn = ssn;
+        Customer.confirmationNumber = confirmationNumber;
+    }
+
     public Customer() {
 
     }
+
     // Getters and setters for customer attributes
     public int getSsn() {
         return ssn;
@@ -49,36 +58,46 @@ public class Customer {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         Customer.name = name;
     }
+
     public String getAddress() {
         return address;
     }
+
     public void setAddress(String address) {
         Customer.address = address;
     }
+
     public int getAge() {
         return age;
     }
+
     public void setAge(int age) {
         Customer.age = age;
     }
+
     public double getDebt() {
         return debt;
     }
-    public void addDebt(double debt){
+
+    public void addDebt(double debt) {
         Customer.debt += debt;
     } // setter but adding
-    public static Customer register(){
+
+    public static Customer register() {
         Customer customer;
         customer = enterDataCustomer();
         return customer;
     }
+
     public static Customer login(int ssn) {
         //log in with ssn
         return searchCustomer(ssn);
     }
+
     public static Customer enterDataCustomer() {
 
         boolean inputIsValid = false;
@@ -89,7 +108,7 @@ public class Customer {
                 /**NAME**/
                 System.out.println("Enter name (First & Last):\n"); //said no space, but that causes error changed to avoid confusion
                 name = input.nextLine().trim();
-                                        //word|space|word
+                //word|space|word
                 if (!name.matches("[a-zA-Z]+\\s[a-zA-Z]+")) {//matches one or more letters (first name & last name) Middle is a space.
                     throw new InputMismatchException("Name must contain only letters.\n");
                 }
@@ -129,8 +148,13 @@ public class Customer {
 
         return new Customer(name, address, age, ssn, car);
     }
-    public static Customer searchCustomer(int ssn){//Searches for the customer in the txt doc using SSN
+
+    public static Customer searchCustomer(int ssn) {//Searches for the customer in the txt doc using SSN
         Files fileHandler = new Files(new File("customerInfo.txt"));
+        int name;
+        String address;
+        int age;
+        int cNum;
 //1        Customer Name: 1 1
 //2        Customer Address: 1234 wadaw waw
 //3        Customer Age: 12
@@ -146,93 +170,94 @@ public class Customer {
                 System.out.println(s);
             }
             // Assuming confirmation number is on line 5 (index 4), you can split it using ":"
+            //multiplier of every info = 6
+            int fileTraverseSSN = 4;
 
-            multi = 6; //multiplier of every info
+            //lines.length for however many customers there are
+            for (int i = fileTraverseSSN -1; i < lines.length; i += 6) { //the line of every ssn = i
+                String[] parts = lines[i].split(":");
+                if (parts.length == 2) {
+                    String ssnString = parts[1].trim();
+                    int ssn1 = Integer.parseInt(ssnString);
+                    if (ssn1 == ssn){
+                        //In here we found ssn, now need to find other Customer data using ssn
+                        //Return customer with verified ssn
+                        //1 above = age
+                        //2 above = address
+                        //3 above = name
+                        //1 below = confirmation number
+                        name = Integer.parseInt(lines[i-1].split(":")[1].trim());
+                        address = lines[i-2].split(":")[1].trim();
+                        age = Integer.parseInt(lines[i-3].split(":")[1].trim());
+                        cNum = Integer.parseInt(lines[i+1].split(":")[1].trim());
 
-            fileTraverseName = 1;
-            fileTraverseAddress = 2;
-            filetraverseAge = 3;
-            fileTraverseSSN = 4;
-            fileTraverseConfirmationNumber= 5;
 
-            for (int i = 0; i < multi; i++) {
-
-
+                        return new Customer(String.valueOf(name), address, age, ssn, cNum);
+                    }
+                }
 
             }
 
-
-            String[] social = lines[fileTraverseSSN-1].split(":");
-            ssn = Integer.parseInt(social[1].trim());//0 is SSN : 1 is ##
-            //System.out.println(ssn + "YAYAYY");
-
-//            if (social.length == 2) {
-//                System.out.println(social[1]);
-//                int socialNum = Integer.parseInt(social[1].trim()); //LOCATION OF NUMBER
-//                // Continue with your existing loop to search for customer by SSN
-//
-//
-//                for (String line : lines) {
-//
-//
-//                    if (socialNum == ssn) {
-//                        return new Customer(name, address, age, socialNum);
-//                    }
-//                }
-//            }
-        } catch (IOException e) {
-            System.out.println("An error occurred while reading the file.");
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid integer format: " + e.getMessage());
-        }
+    } catch(IOException e) {
+        System.out.println("An error occurred while reading the file.");
+    } catch(NumberFormatException e) {
+        System.out.println("Invalid integer format: " + e.getMessage());
+    }
 
         System.out.println("Customer Not Found");
-        return new Customer(); // Customer not found or error occurred
-    }
-    public int generateConfirmationNumber() { //generates random cNum, if already taken, will do loop until a number is found that is not taken
-        int r;
-        do {
-            r = random.nextInt(100_000, 1_000_000);
-        }
-        while (checkConfirmationNumber(r)); // Loop until a unique confirmation number is generated
-        return r;
+        return new
 
+    Customer(); // Customer not found or error occurred
+}
+
+public int generateConfirmationNumber() { //generates random cNum, if already taken, will do loop until a number is found that is not taken
+    int r;
+    do {
+        r = random.nextInt(100_000, 1_000_000);
     }
-    public int getConfirmationNumber() {
-        return confirmationNumber;
-    }
-    public void setConfirmationNumber(int confirmationNumber) {
-        Customer.confirmationNumber = confirmationNumber;
-    }
-    /****ERROR******/
-    public boolean checkConfirmationNumber(int confirmationNumber) {
-        try (BufferedReader br = new BufferedReader(new FileReader("customerInfo.txt"))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(":");
-                if (parts.length >= 2) {
-                    String fieldName = parts[0].trim();
-                    if (fieldName.equals("Customer Confirmation Number")) {
-                        int currConfirmationNumber = Integer.parseInt(parts[1].trim());
-                        if (currConfirmationNumber == confirmationNumber) {
-                            return true; // Confirmation number found
-                        }
+    while (checkConfirmationNumber(r)); // Loop until a unique confirmation number is generated
+    return r;
+
+}
+
+public int getConfirmationNumber() {
+    return confirmationNumber;
+}
+
+public void setConfirmationNumber(int confirmationNumber) {
+    Customer.confirmationNumber = confirmationNumber;
+}
+
+/****ERROR******/
+public boolean checkConfirmationNumber(int confirmationNumber) {
+    try (BufferedReader br = new BufferedReader(new FileReader("customerInfo.txt"))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+            String[] parts = line.split(":");
+            if (parts.length >= 2) {
+                String fieldName = parts[0].trim();
+                if (fieldName.equals("Customer Confirmation Number")) {
+                    int currConfirmationNumber = Integer.parseInt(parts[1].trim());
+                    if (currConfirmationNumber == confirmationNumber) {
+                        return true; // Confirmation number found
                     }
                 }
             }
-        } catch (IOException | NumberFormatException e) {
-            // Log the error for debugging purposes
-            System.out.println("An error occurred while reading the file: " + e.getMessage());
         }
-        return false; // Confirmation number not found or error occurred
+    } catch (IOException | NumberFormatException e) {
+        // Log the error for debugging purposes
+        System.out.println("An error occurred while reading the file: " + e.getMessage());
     }
-    // Overriding toString() method to provide custom string representation of Customer object
-    @Override
-    public String toString() {
-        return  "Customer Name: " + name +
-                "\nCustomer Address: "+address +
-                "\nCustomer Age: " + age +
-                "\nCustomer SSN: " + ssn +
-                "\nCustomer Confirmation Number: " + confirmationNumber + "\n";
-    }
+    return false; // Confirmation number not found or error occurred
+}
+
+// Overriding toString() method to provide custom string representation of Customer object
+@Override
+public String toString() {
+    return "Customer Name: " + name +
+            "\nCustomer Address: " + address +
+            "\nCustomer Age: " + age +
+            "\nCustomer SSN: " + ssn +
+            "\nCustomer Confirmation Number: " + confirmationNumber + "\n";
+}
 }
