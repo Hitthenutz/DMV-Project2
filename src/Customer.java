@@ -221,7 +221,6 @@ public class Customer {
     public void setConfirmationNumber(int confirmationNumber) {
         Customer.confirmationNumber = confirmationNumber;
     }
-
     /****ERROR******/
     public boolean checkConfirmationNumber(int confirmationNumber) {
         try (BufferedReader br = new BufferedReader(new FileReader("customerInfo.txt"))) {

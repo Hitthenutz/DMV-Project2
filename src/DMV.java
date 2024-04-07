@@ -117,6 +117,14 @@ public class DMV {
                     x = input.nextInt();
                     switch (x) {
                         case 1:/*************RENEW***********************/
+                        System.out.println("""
+                                Before you begin, make sure you have
+                                1.Your license plate number
+                                2. The last 5 digits of your vehicle identification number (VIN) or hull identification number (HIN) for a boat/vessel.
+                                3. Your payment information.(Press Enter)""");
+                      input.nextInt();
+                      System.out.println("Now, visit https://www.dmv.ca.gov/wasapp/vrir/start.do?localeName=en");
+
 
 
                             break;
@@ -259,7 +267,6 @@ public class DMV {
                             break;
                     }
                 }
-
                 // Add other conditions for different actions as needed
             } else if (x==3){
                 System.out.println("Exiting Now...");
