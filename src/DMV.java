@@ -30,12 +30,8 @@ public class DMV {
     public static String filePath = "customerInfo.txt";
     public static File f = new File(filePath);
     public static Files file = new Files(f);
-
-
-
     public static int x, j;
     public static boolean y = true;
-    public static int time;
     public static ArrayList<Customer> customerList = new ArrayList<>();
 
 
