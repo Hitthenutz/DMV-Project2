@@ -1,4 +1,3 @@
-import java.beans.Customizer;
 import java.util.Scanner;
 
 public class Car {
