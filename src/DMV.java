@@ -116,16 +116,16 @@ public class DMV {
 
                     x = input.nextInt();
                     switch (x) {
-                        case 1://Renew
+                        case 1:/*************RENEW***********************/
 
 
                             break;
-                        case 2://New Registration
+                        case 2:/*************NEW REGISTRATION***********************/
 
 
 
                             break;
-                        case 3://Check Registration Status
+                        case 3:/*************CHECK REGISTRATION STATUS***********************/
                             System.out.println("Have you checked the Registration Status page on our DMV website?\n1.Yes\n2.No");
                             x = input.nextInt();
                             input.nextLine();
@@ -156,7 +156,7 @@ public class DMV {
                             }
                             break;
                             
-                        case 4://License plate/decal/placard
+                        case 4:/*************License plate/decal/placard***********************/
                             System.out.println("");
 
                             break;
@@ -171,15 +171,15 @@ public class DMV {
                     }
                     x = input.nextInt();
                     switch (x) {
-                        case 1://Renew
+                        case 1:/*************RENEW***********************/
 
 
                             break;
-                        case 2://Real ID
+                        case 2:/*************REAL ID***********************/
 
 
                             break;
-                        case 3://New DL
+                        case 3:/*************NEW DL***********************/
                             System.out.println("Have you checked the Drivers License page on our DMV website?\n1.Yes\n2.No");
                             x = input.nextInt();
                             if (x == 2) {
@@ -214,7 +214,7 @@ public class DMV {
                                 //to enclose
                             }
                                 break;
-                        case 4://Permits
+                        case 4:/*************PERMITS***********************/
 
                             System.out.println("Have you checked the Permit page on the DMV website?\n1.Yes\n2.No");
                             j = input.nextInt();
