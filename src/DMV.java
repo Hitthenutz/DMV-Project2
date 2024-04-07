@@ -195,10 +195,12 @@ public class DMV {
                             }
                                 
                             else {
-                                System.out.println("The following is only for those who are a lawfully present US citizen and non-citizen:\n Do you have any document that document must include your date of birth and your full name");
-                                
+                                System.out.println("The following is only for those who are a lawfully present US citizen and non-citizen:\n What type of identity document do you?");
+                                input.nextLine();
+                                input.nextLine();
+                               
                             }
-                            
+                            3
                             break;
                             
                         case 3:/*************NEW DL***********************/
