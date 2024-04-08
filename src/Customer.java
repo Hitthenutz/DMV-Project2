@@ -165,8 +165,6 @@ public class Customer {
             for (int i = fileTraverseSSN - 1; i < lines.length; i += 6) { //the line of every ssn = i
                 String[] parts = lines[i].split(":");
 
-
-
                 if (parts.length == 2) {
                     String ssn1 = parts[1].trim();
 
