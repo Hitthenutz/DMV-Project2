@@ -67,6 +67,19 @@ public class Car {
         String vin = input.nextLine();
         return new Car(plate,make,model,vin,year);
     }
-
-
+    @Override
+    public String toString() {
+        //License Plate:
+        //Vin:
+        //Make:
+        //Model:
+        //Year:
+        //SSN:
+        return "License Plate: " + plate +
+                "\nVIN: "+ vin +
+                "\nMake: "+make +
+                "\nModel: " + model +
+                "\nYear: " + year +
+                "\nSSN: ";
+    }
 }

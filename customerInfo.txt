@@ -3,18 +3,21 @@ Customer Address: 1234 wadaw waw
 Customer Age: 123
 Customer SSN: 12
 Customer Confirmation Number: 123312
+Customer Debt: 0
 
 Customer Name:wad wada
 Customer Address: 1234 wadawd str
 Customer Age: 1234
 Customer SSN: 22222
 Customer Confirmation Number: 673593
+Customer Debt: 0
 
 Customer Name: Matt Quan
 Customer Address: 1234 wadaw wa
 Customer Age: 12345
 Customer SSN: 1222
 Customer Confirmation Number: 917115
+Customer Debt: 0
 
 
 

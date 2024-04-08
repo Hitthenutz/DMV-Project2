@@ -1,11 +1,22 @@
 /**
  * Matthew Quan
  * Lizette Hernandez
- * Simardeep Kaur 
+ * Simardeep Kaur
  * Angelo Angelidis
- * <p>
+ *
  * Project 2 - DMV Customer Service (Making DMV employee's job easier)
- * <p>
+ *
+ * Renew: @Hit
+ * New Reg: @Groiky
+ * Check Reg: @liz.h123
+ * License/Decal/Placard: @Snowflake
+ *
+ * License/ID
+ * Renew: @Groiky
+ * Real ID: @Snowflake
+ * New DL: @liz.h123
+ * Permits: @Hit
+ *
  * Unauthorized reproduction, duplication, or distribution of any content,
  * including but not limited to text, images, audio, or code, is strictly
  * prohibited and may result in legal action. All rights to copy, modify,
@@ -19,8 +30,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-
-
 public class DMV {
 
     public static Scanner input = new Scanner(System.in);
@@ -30,8 +39,6 @@ public class DMV {
     public static int x, j;
     public static boolean y = true;
     public static ArrayList<Customer> customerList = new ArrayList<>();
-
-
 
 
     public static void main(String[] args) {
@@ -73,19 +80,18 @@ public class DMV {
         a2.addChild(b5, b6, b7, b8);
 
 
-
-            System.out.println("1.Login\n2.Register");//(condition) ? (value if true) : (value if false).
+        System.out.println("1.Login\n2.Register");//(condition) ? (value if true) : (value if false).
+        x = input.nextInt();
+        if (x == 1) {
+            System.out.println("Please enter your SSN to Login");
             x = input.nextInt();
-            if (x == 1) {
-                System.out.println("Please enter your SSN to Login");
-                x = input.nextInt();
-                currCustomer = Customer.searchCustomer(x);
-            } else if (x == 2) {
-                currCustomer = Customer.enterDataCustomer();
-            } else {
-                System.out.println("Invalid choice. Exiting");
-                return;
-            }
+            currCustomer = Customer.searchCustomer(x);
+        } else if (x == 2) {
+            currCustomer = Customer.enterDataCustomer();
+        } else {
+            System.out.println("Invalid choice. Exiting");
+            return;
+        }
 
 
         while (y) {
@@ -120,17 +126,17 @@ public class DMV {
 
 
 
+
                             break;
-                            case 2://New Registration
+                        case 2://New Registration
                             Car newCar = Car.enterDataCar(); // Collect car details
                             Customer.registerNewCar(newCar); // Register the car
                             System.out.println("Vehicle registered successfully.");
-
-
                             break;
+
                         case 3://Check Registration Status
                             System.out.println("Have you checked the Registration Status page on our DMV website?\n1.Yes\n2.No");
-                            input.nextLine();
+                            j = input.nextInt();
                             if (j == 2) {
                                 System.out.println("""
                                         Please visit & follow: https://www.dmv.ca.gov/portal/vehicle-registration/vehicle-registration-status/
@@ -138,33 +144,31 @@ public class DMV {
                                         """);
 
                                 break;
-                            }
-                            else {
+                            } else {
                                 System.out.println("You have successfully checked your registration status.");
                             }
                             break;
-                            
+
                         case 4://License plate/decal/placard
-                           System.out.println("Have you checked the Disabled person parking placards and plates on the DMV website?\n1.Yes\n2.No");
+                            System.out.println("Have you checked the Disabled person parking placards and plates on the DMV website?\n1.Yes\n2.No");
                             input.nextLine();
-                            
+
                             // You can go on the DMV website and check out the disabled person parking placards and plates
                             if (j == 2) {
                                 System.out.println("""
                                         Please visit & follow: https://www.dmv.ca.gov/portal/vehicle-registration/license-plates-decals-and-placards/disabled-person-parking-placards-plates/             
                                         """);
                                 break;
-                            }
-                                
-                            else {
+                            } else {
                                 System.out.println("Fill out the REG 195 Application for Disabled Person Placard or Plates along with the car registration and mail it the DMV");
-                                System.out.println("The information will be processed by the DMV in 3-5 bussiness days.")
-                                System.out.println("The placards or plates will be sent out after completion of this process")
+                                System.out.println("The information will be processed by the DMV in 3-5 business days.");
+                                System.out.println("The placards or plates will be sent out after completion of this process");
                             }
                             break;
 
 
-                    /****Enter Client Data stores into Customer Object***/
+                        /****Enter Client Data stores into Customer Object***/
+                    }
                 } else if (curr.getData().equals("License/ID")) {
                     System.out.println("What would you like to do in " + curr.getData());
                     for (int i = 0; i < curr.getChildren().size(); i++) {
@@ -185,21 +189,20 @@ public class DMV {
                                 System.out.println(" Please visit & follow: https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/real-id" +
                                         " Once all steps have been completed, continue here.");
                                 break;
-                            }
-
-                            else {
+                            } else {
                                 System.out.println("The following is only for those who are a lawfully present US citizen and non-citizen:\n What type of identity document do you?");
                                 input.nextLine();
                                 input.nextLine();
                                 System.out.println("Please in put the required identity proof documents which must include your full name:\nPress Enter");
                                 input.nextLine();
-                                
+
                                 //Go to the website and fill out the application and schedule an appointment
                                 System.out.println("Please Visit & follow: https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/dl-id-online-app-edl-44/");
                                 input.nextLine();
                                 System.out.println("Your Real Id appointment is scheduled for Friday 26 at 11am.");
-                                
+
                                 // Once the appointment is scheduled, the user will get a confirmation number
+                                assert currCustomer != null;
                                 System.out.println("Your confirmation number is: " + currCustomer.getConfirmationNumber());
                                 input.nextLine();
                                 int s = currCustomer.generateConfirmationNumber();
@@ -210,7 +213,7 @@ public class DMV {
                                 //Contiue or Sign out of the DMV account
                                 System.out.println(" To continue to our table of contents, Press enter OR Other wise you may sign out. Have great day!");
                                 input.nextLine();
-                
+
                             }
                             break;
                         case 3://New DL
@@ -222,9 +225,8 @@ public class DMV {
                                         Once all steps have been completed, continue here.
                                         """);
 
-                               break;
-                            }
-                            else {
+                                break;
+                            } else {
                                 System.out.println("The following is only for those over 18 years of age:\nWhat class drivers license are you applying for?");
                                 input.nextLine();
                                 input.nextLine();
@@ -241,7 +243,7 @@ public class DMV {
                                 customerList.add(currCustomer);
                                 //to enclose
                             }
-                                break;
+                            break;
                         case 4://Permits
 
                             System.out.println("Have you checked the Permit page on the DMV website?\n1.Yes\n2.No");
@@ -257,7 +259,6 @@ public class DMV {
                                 System.out.println("What type of permit are you applying for");
 
 
-
                                 System.out.println("Please submit all required documents (Press Enter)");
                                 input.nextLine(); // Clear the newline character left in the buffer
                                 assert currCustomer != null;
@@ -268,10 +269,10 @@ public class DMV {
 
                                 int a = currCustomer.generateConfirmationNumber();
                                 currCustomer.setConfirmationNumber(a); // Get confirmation number and check if other people have the same cNum
-                                System.out.println("Confirmation Number: " + currCustomer.getConfirmationNumber()+"\n");
+                                System.out.println("Confirmation Number: " + currCustomer.getConfirmationNumber() + "\n");
                                 customerList.add(currCustomer);
                                 try {
-                                    file.write(currCustomer +"\n");
+                                    file.write(currCustomer + "\n");
                                     file.write("\n");
                                     System.out.println("Data saved to file successfully!\n");
                                 } catch (IOException e) {
@@ -289,12 +290,12 @@ public class DMV {
                 }
 
                 // Add other conditions for different actions as needed
-            } else if (x==3){
+            } else if (x == 3) {
                 System.out.println("Exiting Now...");
-               System.exit(0);
+                System.exit(0);
             }
 
         }
     }
-
 }
+

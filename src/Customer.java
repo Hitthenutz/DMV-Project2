@@ -28,18 +28,20 @@ public class Customer {
         Customer.car = car;
     }
 
-    public Customer(String name, String address, int age, int ssn) {
+    public Customer(String name, String address, int age, int ssn, double debt) {
         Customer.name = name;
         Customer.address = address;
         Customer.age = age;
         Customer.ssn = ssn;
+        Customer.debt = debt;
     }
 
-    public Customer(String name, String address, int age, int ssn, int confirmationNumber) {
+    public Customer(String name, String address, int age, int ssn, double debt, int confirmationNumber) {
         Customer.name = name;
         Customer.address = address;
         Customer.age = age;
         Customer.ssn = ssn;
+        Customer.debt = debt;
         Customer.confirmationNumber = confirmationNumber;
     }
 
@@ -151,7 +153,15 @@ public class Customer {
             }
         } while (!inputIsValid);
 
-        return new Customer(name, address, age, ssn);
+        for (int i = 0; i < DMV.customerList.size(); i++) {
+            if (new Customer(name,address,age,ssn,debt).equals(DMV.customerList.get(i))){
+                System.out.println("Customer already in System!");
+                return DMV.customerList.get(i);
+            }
+        }
+
+
+        return new Customer(name, address, age, ssn, 0.0);
     }
     public static Customer searchCustomer(int ssn) {//Searches for the customer in the txt doc using SSN
         Files fileHandler = new Files(new File("customerInfo.txt"));
@@ -177,7 +187,7 @@ public class Customer {
 
 
             //lines.length for however many customers there are
-            for (int i = fileTraverseSSN - 1; i < lines.length; i += 6) { //the line of every ssn = i
+            for (int i = fileTraverseSSN - 1; i < lines.length; i += 7) { //the line of every ssn = i
                 String[] parts = lines[i].split(":");
 
                 if (parts.length == 2) {
@@ -193,6 +203,7 @@ public class Customer {
                         //2 above = address
                         //3 above = name
                         //1 below = confirmation number
+                        //2 below = debt
 
                         name = (lines[i-3].split(":")[1].trim());
                         System.out.println(name);
@@ -202,9 +213,11 @@ public class Customer {
                         System.out.println(cNum);
                         age = Integer.parseInt(lines[i - 1].split(":")[1].trim());
                         System.out.println(age);
+                        debt = Integer.parseInt(lines[i+2].split(":")[1].trim());
+                        System.out.println(debt);
 
                         System.out.println("Customer Found!");
-                        return new Customer(name, address, age, ssn, cNum);
+                        return new Customer(name, address, age, ssn, debt, cNum);
                     }
                 }
             }
@@ -264,6 +277,7 @@ public class Customer {
                 "\nCustomer Address: " + address +
                 "\nCustomer Age: " + age +
                 "\nCustomer SSN: " + ssn +
-                "\nCustomer Confirmation Number: " + confirmationNumber + "\n";
+                "\nCustomer Confirmation Number: " + confirmationNumber +
+                "\nCustomer Debt: " + debt;
     }
 }
