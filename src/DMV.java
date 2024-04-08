@@ -131,10 +131,6 @@ public class DMV {
                                         System.out.println("Vehicle successfully renewed");
                                     }
                                 }
-
-
-
-
                             break;
                         case 2://New Registration
                             Car newCar = Car.enterDataCar(); // Collect car details
