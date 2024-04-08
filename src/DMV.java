@@ -147,13 +147,27 @@ public class DMV {
                             j = input.nextInt();
                             if (j == 2) {
                                 System.out.println("""
-                                        Please visit & follow: https://www.dmv.ca.gov/portal/vehicle-registration/vehicle-registration-status/
+                                        \nPlease visit & follow: https://www.dmv.ca.gov/portal/vehicle-registration/vehicle-registration-status/
                                         You can now check your registration entirely online.
                                         """);
+                                System.out.println("Once you have gone to the site, press ENTER");
+                                input.nextLine();
+                                System.out.println("Thank you for using our online service.\n\n\n********************\n\n\n");
+                                System.out.println("To continue to our table of contents, Press enter");
+                                System.out.println("Other wise you may sign out.");
+                                input.nextLine();
+                                System.out.println("\n\n\n********************");
 
                                 break;
                             } else {
-                                System.out.println("You have successfully checked your registration status.");
+                                System.out.println("After you complete the steps there, press ENTER\n");
+                                input.nextLine();
+                                System.out.println("\nYou have successfully checked your registration status!\n");
+                                System.out.println("Thank you for using our online service.\n********************\n");
+                                System.out.println("To continue to our table of contents, Press enter");
+                                System.out.println("Other wise you may sign out.");
+                                input.nextLine();
+                                System.out.println("\n********************");
                             }
                             break;
 
@@ -236,7 +250,7 @@ public class DMV {
                             if (j == 2) {
                                 System.out.println("""
                                         Please visit & follow: https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/dl-id-online-app-edl-44/
-                                        Once all steps have been completed, continue here.
+                                        Once all steps have been completed, return here.
                                         """);
 
                                 break;
@@ -255,6 +269,12 @@ public class DMV {
                                 input.nextLine();
                                 int s = currCustomer.generateConfirmationNumber();
                                 customerList.add(currCustomer);
+                                System.out.println("\nYou have successfully scheduled your written test to get your drivers license!\n");
+                                System.out.println("Thank you for using our online service.\n********************\n");
+                                System.out.println("To continue to our table of contents, Press enter");
+                                System.out.println("Other wise you may sign out.");
+                                input.nextLine();
+                                System.out.println("\n********************");
                                 //to enclose
                             }
                             break;
