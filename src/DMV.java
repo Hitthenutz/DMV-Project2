@@ -123,6 +123,7 @@ public class DMV {
                     }
 
                     x = input.nextInt();
+
                     switch (x) {
                         case 1://Renew
                             if (login){
@@ -163,14 +164,15 @@ public class DMV {
                                             input.nextLine();
                                         
                                         // prompt the user to enter the VIN number
-                                        String vinNumber = scanner.nextLine();
+                                        String vinNumber = input.nextLine();
 
                                         //Display the VIN number 
                                         System.out.println("You entered VIN number" + vinNumber);
                                         
                                         //Display the amount for the plates
                                         System.out.println( "Cost: $ + 45");
-                                         currCustomer.addDebt(45.00);
+                                        assert currCustomer != null;
+                                        currCustomer.addDebt(45.00);
                                         System.out.println("Your Disable plates will arrive in your mail by next Thursday");
                                 break;
                             }
