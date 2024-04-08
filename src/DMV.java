@@ -145,10 +145,23 @@ public class DMV {
                             break;
                             
                         case 4://License plate/decal/placard
-                            System.out.println("");
-
+                           System.out.println("Have you checked the Disabled person parking placards and plates on the DMV website?\n1.Yes\n2.No");
+                            input.nextLine();
+                            
+                            // You can go on the DMV website and check out the disabled person parking placards and plates
+                            if (j == 2) {
+                                System.out.println("""
+                                        Please visit & follow: https://www.dmv.ca.gov/portal/vehicle-registration/license-plates-decals-and-placards/disabled-person-parking-placards-plates/             
+                                        """);
+                                break;
+                            }
+                                
+                            else {
+                                System.out.println("Fill out the REG 195 Application for Disabled Person Placard or Plates along with the car registration and mail it the DMV");
+                                System.out.println("The information will be processed by the DMV in 3-5 bussiness days.")
+                                System.out.println("The placards or plates will be sent out after completion of this process")
+                            }
                             break;
-                    }
 
 
                     /****Enter Client Data stores into Customer Object***/
