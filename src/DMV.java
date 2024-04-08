@@ -166,8 +166,41 @@ public class DMV {
 
                             break;
                         case 2://Real ID
+                            System.out.println("Have you checked the Real ID page on our DMV website?\n1.Yes\n2.No");
+                            j = input.nextInt();
+                            if (j == 2) {
+                                System.out.println("" 
+                                    Please visit & follow: https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/real-id 
+                                Once all steps have been completed, continue here.
+                                        """);
+                                break;
+                            }
 
+                            else {
+                                System.out.println("The following is only for those who are a lawfully present US citizen and non-citizen:\n What type of identity document do you?");
+                                input.nextLine();
+                                input.nextLine();
+                                System.out.println("Please in put the required identity proof documents which must include your full name:\nPress Enter");
+                                input.nextLine();
+                                
+                                //Go to the website and fill out the application and schedule an appointment
+                                System.out.println("Please Visit & follow: https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/dl-id-online-app-edl-44/");
+                                input.nextLine();
+                                System.out.println("Your Real Id appointment is scheduled for Friday 26 at 11am.");
+                                
+                                // Once the appointment is scheduled, the user will get a confirmation number
+                                System.out.println("Your confirmation number is: " + currCustomer.getConfirmationNumber());
+                                input.nextLine();
+                                int s = currCustomer.generateConfirmationNumber();
+                                customerList.add(currCustomer);
+                                System.out.println("\nYou have successfully scheduled your appointment for Real Id, please remember to bring your documentations!\n");
+                                System.out.println("Thanks for using our online service.");
 
+                                //Contiue or Sign out of the DMV account
+                                System.out.println(" To continue to our table of contents, Press enter OR Other wise you may sign out. Have great day!");
+                                input.nextLine();
+                
+                            }
                             break;
                         case 3://New DL
                             System.out.println("Have you checked the Drivers License page on our DMV website?\n1.Yes\n2.No");
