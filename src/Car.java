@@ -45,6 +45,14 @@ public class Car {
         this.year = year;
         this.customer.setSsn(customer.getSsn());
     }
+    public Car(String plate, String make, String model, String vin, int year) {
+        this.plate = plate;
+        this.make = make;
+        this.model = model;
+        this.vin = vin;
+        this.year = year;
+    }
+
     public Car(){
 
     }
