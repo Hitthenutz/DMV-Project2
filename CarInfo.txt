@@ -1,6 +1,20 @@
-License Plate:
-Vin:
-Make:
-Model:
-Year:
-SSN:
+License Plate:wa
+Vin:wadawd
+Make:wad
+Model:wada
+Year:5
+SSN:1233
+
+License Plate:wa123
+Vin:wadawd123
+Make:wad123
+Model:wada123
+Year:42
+SSN:1233
+
+License Plate:wa
+Vin:wadawd
+Make:wad
+Model:wada
+Year:52
+SSN:12

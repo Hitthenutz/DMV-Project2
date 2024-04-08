@@ -5,6 +5,7 @@ public class Car {
     private int year;
 
     private static final Scanner input = new Scanner(System.in);
+    Customer customer = new Customer();
 
     public String getMake() {
         return make;
@@ -36,15 +37,24 @@ public class Car {
     public void setPlate(String plate) {
         this.plate = plate;
     }
-    public Car(String plate, String make, String model, String vin, int year) {
+    public Car(String plate, String make, String model, String vin, int year, Customer customer) {
         this.plate = plate;
         this.make = make;
         this.model = model;
         this.vin = vin;
         this.year = year;
+        this.customer.setSsn(customer.getSsn());
     }
     public Car(){
 
+    }
+    public static Car registerNewCar(Car newCar) {
+        Car car = new Car();
+        car.setMake(newCar.getMake());
+        car.setModel(newCar.getModel());
+        car.setVin(newCar.getVin());
+        car.setYear(newCar.getYear());
+        return car;
     }
     public static Car enterDataCar(){
 

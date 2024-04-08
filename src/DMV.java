@@ -37,7 +37,8 @@ public class DMV {
     public static File f = new File(filePath);
     public static Files file = new Files(f);
     public static int x, j;
-    public static boolean y = true;
+    public static boolean y = true, login = false;
+
     public static ArrayList<Customer> customerList = new ArrayList<>();
 
 
@@ -86,6 +87,7 @@ public class DMV {
             System.out.println("Please enter your SSN to Login");
             x = input.nextInt();
             currCustomer = Customer.searchCustomer(x);
+            login = true;
         } else if (x == 2) {
             currCustomer = Customer.enterDataCustomer();
         } else {
@@ -114,7 +116,7 @@ public class DMV {
                 //stores the number the user selects. Uses number to follow Tree Structure
 
 
-                if (curr.getData().equals("Registration")) {
+                if (curr.getData().equals(a1.getData())) {
                     System.out.println("What would you like to do in " + curr.getData());
                     for (int i = 0; i < curr.getChildren().size(); i++) {
                         System.out.println((i + 1) + ". " + curr.getChild(i).getData());
@@ -123,6 +125,13 @@ public class DMV {
                     x = input.nextInt();
                     switch (x) {
                         case 1://Renew
+                            if (login){
+
+                                    if (currCustomer.getSearchedCustomerCar().getVin().equals(Customer.getCar().getVin())) {
+                                       Customer.renewRegistration();
+                                        System.out.println("Vehicle successfully renewed");
+                                    }
+                                }
 
 
 
@@ -130,7 +139,7 @@ public class DMV {
                             break;
                         case 2://New Registration
                             Car newCar = Car.enterDataCar(); // Collect car details
-                            Customer.registerNewCar(newCar); // Register the car
+                            Customer.setCar(Car.registerNewCar(newCar)); // Register the car
                             System.out.println("Vehicle registered successfully.");
                             break;
 
@@ -158,7 +167,8 @@ public class DMV {
                                         System.out.println("Please provide the vehicle VIN number: \nPress Enter");
                                             input.nextLine();
                                         // associate the vin number to that specific customer
-                                            currCustomer.addDebt(45.00);
+                                        assert currCustomer != null;
+                                        currCustomer.addDebt(45.00);
                                         System.out.println("Cost: $" + currCustomer.getDebt());
                                         System.out.println("Your Disable plates will arrive in your mail by next Thursday");
                                 break;
@@ -174,7 +184,7 @@ public class DMV {
 
                         /****Enter Client Data stores into Customer Object***/
                     }
-                } else if (curr.getData().equals("License/ID")) {
+                } else if (curr.getData().equals(a2.getData())) {
                     System.out.println("What would you like to do in " + curr.getData());
                     for (int i = 0; i < curr.getChildren().size(); i++) {
                         System.out.println((i + 1) + ". " + curr.getChild(i).getData());
