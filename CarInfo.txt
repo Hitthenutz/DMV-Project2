@@ -3,7 +3,7 @@ Vin:wadawd
 Make:wad
 Model:wada
 Year:5
-SSN:123
+SSN:12
 
 License Plate:wa123
 Vin:wadawd123
