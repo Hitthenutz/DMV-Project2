@@ -162,7 +162,7 @@ public class DMV {
                                         System.out.println("Please provide the vehicle VIN number: \nPress Enter");
                                             input.nextLine();
                                         
-                                        // propmt the user to enter the VIN number
+                                        // prompt the user to enter the VIN number
                                         String vinNumber = scanner.nextLine();
 
                                         //Display the VIN number 
