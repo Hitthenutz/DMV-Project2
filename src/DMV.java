@@ -123,6 +123,7 @@ public class DMV {
                     }
 
                     x = input.nextInt();
+
                     switch (x) {
                         case 1://Renew
                             if (login){
@@ -131,10 +132,6 @@ public class DMV {
                                         System.out.println("Vehicle successfully renewed");
                                     }
                                 }
-
-
-
-
                             break;
                         case 2://New Registration
                             Car newCar = Car.enterDataCar(); // Collect car details
@@ -173,16 +170,23 @@ public class DMV {
 
                         case 4://License plate/decal/placard
                             System.out.println("Apply for Disable License PLates");
-                            System.out.println("Have you filled out the REG 195 form found on the DMV website?\n1.No\n2.Yes");
+                            System.out.println("Have you filled out the REG 195 form found on the DMV website?\n1.Yes\n2.NO");
                                 input.nextLine();
                                     if (j == 2) {
                                         System.out.println("Please have a licensed physician, surgeon, chiropractor, optometrist, physician assistant, nurse practitioner, or certified nurse midwife that has knowledge of the disease and/ or disability complete and sign the Medical Provider’s Certification of Disability section of your application REG 195");
                                         System.out.println("Please provide the vehicle VIN number: \nPress Enter");
                                             input.nextLine();
-                                        // associate the vin number to that specific customer
+                                        
+                                        // prompt the user to enter the VIN number
+                                        String vinNumber = input.nextLine();
+
+                                        //Display the VIN number 
+                                        System.out.println("You entered VIN number" + vinNumber);
+                                        
+                                        //Display the amount for the plates
+                                        System.out.println( "Cost: $ + 45");
                                         assert currCustomer != null;
                                         currCustomer.addDebt(45.00);
-                                        System.out.println("Cost: $" + currCustomer.getDebt());
                                         System.out.println("Your Disable plates will arrive in your mail by next Thursday");
                                 break;
                             }
