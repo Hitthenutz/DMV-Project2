@@ -80,6 +80,6 @@ public class Car {
                 "\nMake: "+make +
                 "\nModel: " + model +
                 "\nYear: " + year +
-                "\nSSN: ";
+                "\nSSN: "; //can be removed
     }
 }
