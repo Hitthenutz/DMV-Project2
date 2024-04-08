@@ -61,6 +61,7 @@ public class Car {
         String model = input.nextLine();
         System.out.println("Enter year:");
         int year = input.nextInt();
+        input.nextLine();
         System.out.println("Enter VIN:");
         //17Characters(letters & numbers)
         String vin = input.nextLine();

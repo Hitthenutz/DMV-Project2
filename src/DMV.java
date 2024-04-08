@@ -2,7 +2,7 @@
  * Matthew Quan
  * Lizette Hernandez
  * Simardeep Kaur 
- * <p>
+ * Angelo Angelidis
  * <p>
  * Project 2 - DMV Customer Service (Making DMV employee's job easier)
  * <p>
@@ -119,9 +119,12 @@ public class DMV {
                         case 1://Renew
 
 
-                            break;
-                        case 2://New Registration
 
+                            break;
+                            case 2://New Registration
+                            Car newCar = Car.enterDataCar(); // Collect car details
+                            Customer.registerNewCar(newCar); // Register the car
+                            System.out.println("Vehicle registered successfully.");
 
 
                             break;
@@ -142,7 +145,7 @@ public class DMV {
                             break;
                             
                         case 4://License plate/decal/placard
-                            System.out.println("")
+                            System.out.println("");
 
                             break;
                     }
@@ -157,6 +160,8 @@ public class DMV {
                     x = input.nextInt();
                     switch (x) {
                         case 1://Renew
+                            Customer.renewLicense(); // Renew the license
+                            System.out.println("License/ID renewed successfully.");
 
 
                             break;

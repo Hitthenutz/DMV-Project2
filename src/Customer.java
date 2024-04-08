@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.time.LocalDate;
 
 public class Customer {
     private static String name;
@@ -11,7 +12,7 @@ public class Customer {
     private static double debt;
     private static Car car; //Aggregation Relationship "has a"
     //Customer "has a"
-
+    private static LocalDate licenseExpirationDate; // Static field for license expiration
     private final Random random = new Random(System.currentTimeMillis());
     //Because it generates the random # very fast, it could use the same seed, meaning it will generate the same random int
     //you ensure that it uses a different seed each time the method is called, reducing the likelihood of generating
@@ -44,6 +45,20 @@ public class Customer {
 
     public Customer() {
 
+    }
+    // Static methods related to license management
+    public static void setLicenseExpirationDate(LocalDate date) {
+        licenseExpirationDate = date;
+    }
+    // Static methods related to license management
+    public static void renewLicense() {
+        licenseExpirationDate = LocalDate.now().plusYears(5);
+        System.out.println("License/ID renewed. New expiration date: " + licenseExpirationDate);
+    }
+    // Static method related to car management
+    public static void registerNewCar(Car newCar) {
+        car = newCar;
+        System.out.println("New vehicle registered to customer.");
     }
 
     // Getters and setters for customer attributes
