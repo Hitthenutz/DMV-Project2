@@ -88,12 +88,19 @@ public class DMV {
             x = input.nextInt();
             currCustomer = Customer.searchCustomer(x);
             login = true;
+            if (currCustomer != null) {
+                DMV.linkCustomerCarBySSN(currCustomer);
+                // Continue with other operations, like renewing registration
+            }
+
+
         } else if (x == 2) {
             currCustomer = Customer.enterDataCustomer();
         } else {
             System.out.println("Invalid choice. Exiting");
             return;
         }
+
 
 
         while (y) {
@@ -126,12 +133,12 @@ public class DMV {
 
                     switch (x) {
                         case 1://Renew
-                            if (login){
-                                    if (currCustomer.getSearchedCustomerCar().getVin().equals(Customer.getCar().getVin())) {
-                                       Customer.renewRegistration();
-                                        System.out.println("Vehicle successfully renewed");
-                                    }
-                                }
+                            if (login && currCustomer != null && currCustomer.getCar() != null) {
+                                Customer.renewRegistration(); // Assuming this method is correctly implemented for the current customer's car
+                                System.out.println("Vehicle successfully renewed");
+                            } else {
+                                System.out.println("Login or car information is missing.");
+                            }
                             break;
                         case 2://New Registration
                             Car newCar = Car.enterDataCar(); // Collect car details
@@ -335,5 +342,48 @@ public class DMV {
 
         }
     }
+    public static void linkCustomerCarBySSN(Customer customer) {
+        int ssnToSearch = customer.getSsn();
+        Files fileHandler = new Files(new File("CarInfo.txt"));
+
+        try {
+            String content = fileHandler.read();
+            String[] lines = content.split("\\r?\\n"); // Split on new line, works for both UNIX and Windows
+
+            for (int i = 0; i < lines.length; i++) {
+                // Check if we're at an SSN line, which is line 6 in each 7-line block (index 5 in zero-based index)
+                if (i % 7 == 5) { // This finds every 6th line effectively by checking the remainder is 5 when divided by 7
+                    String ssnLine = lines[i];
+                    String[] parts = ssnLine.split(":");
+                    if (parts.length == 2 && parts[1].trim().equals(String.valueOf(ssnToSearch))) {
+                        // SSN match found, extract car details from the previous lines
+                        String plate = lines[i - 5].split(":")[1].trim();
+                        String vin = lines[i - 4].split(":")[1].trim();
+                        String make = lines[i - 3].split(":")[1].trim();
+                        String model = lines[i - 2].split(":")[1].trim();
+                        int year = Integer.parseInt(lines[i - 1].split(":")[1].trim());
+
+                        Car car = new Car(plate, make, model, vin, year);
+                        customer.setCar(car); // Assuming you've adjusted your Customer class accordingly
+                        System.out.println("Car successfully linked to the customer.");
+                        System.out.println("License Plate: " + plate);
+                        System.out.println("VIN: " + vin);
+                        System.out.println("Make: " + make);
+                        System.out.println("Model: " + model);
+                        System.out.println("Year: " + year);
+                        return; // Exit after linking the car
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading the file.");
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid integer format: " + e.getMessage());
+        }
+
+        System.out.println("Car not found for SSN: " + ssnToSearch);
+    }
+
 }
+
 

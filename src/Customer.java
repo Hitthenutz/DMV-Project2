@@ -85,72 +85,42 @@ public class Customer {
         return car;
     }
     //searches the Car File for the Customer's Car USING THEIR SSN
-    public Car getSearchedCustomerCar() {
-        //Use this method to search for ssn
-        if (this.getSsn() == ssn) {
-            Files fileHandler = new Files(new File("CarInfo.txt"));
-            String plate, make, model, vin;
-            int year;
-            try {
-                String content = fileHandler.read();
+    public Car getSearchedCustomerCar(int ssnToSearch) {
+        Files fileHandler = new Files(new File("CarInfo.txt"));
+        String plate, make, model, vin;
+        int year;
 
-                String[] lines = content.split("\\n");
+        try {
+            String content = fileHandler.read();
+            String[] lines = content.split("\\n");
 
-                // Assuming confirmation number is on line 5 (index 4), you can split it using ":"
-                //multiplier of every info = 6
-                int fileTraverseSSN = 6;
-                //the first ssn
+            // Loop through lines to find the car associated with the SSN
+            for (int i = 0; i < lines.length; i += 7) { // Assuming each car entry takes up 7 lines
+                String[] parts = lines[i].split(":"); // Assuming SSN is on a predictable line, adjust as needed
 
+                if (parts.length == 2) {
+                    String ssn1 = parts[1].trim();
+                    if (ssn1.equals(String.valueOf(ssnToSearch))) {
+                        // Found the SSN, now extract car details
+                        plate = lines[i + 1].split(":")[1].trim(); // Adjust indices based on actual data layout
+                        vin = lines[i + 2].split(":")[1].trim();
+                        make = lines[i + 3].split(":")[1].trim();
+                        model = lines[i + 4].split(":")[1].trim();
+                        year = Integer.parseInt(lines[i + 5].split(":")[1].trim());
 
-                //lines.length for however many customers there are
-                //i+=7 for every 7 lines is the ssn number
-                for (int i = fileTraverseSSN - 1; i < lines.length; i += 7) { //the line of every ssn = i
-                    String[] parts = lines[i].split(":");
-
-                    if (parts.length == 2) {
-                        String ssn1 = parts[1].trim();
-
-                        if (ssn1.equals(String.valueOf(ssn))) { // ssn found at line 6
-                            //In here we found ssn, now need to find other Customer data using ssn
-                            //Return customer with verified ssn
-
-                            //License Plate:wa
-                            //Vin:wadawd
-                            //Make:wad
-                            //Model:wada
-                            //Year:5
-                            //SSN:1233
-
-                            plate = (lines[i - 5].split(":")[1].trim());
-
-                            vin = lines[i - 4].split(":")[1].trim();
-
-                            make = (lines[i - 3].split(":")[1].trim());
-
-                            model = lines[i - 2].split(":")[1].trim();
-
-                            year = Integer.parseInt(lines[i - 1].split(":")[1].trim());
-
-                            ssn1 = lines[i].split(":")[1].trim();
-
-                            System.out.println("Customer Car Found!");
-                            System.out.println(new Car(plate,make,model,vin,year, new Customer().setSsn(Integer.parseInt(ssn1))));
-                            return new Car(plate, make, model, vin, year);
-                        }
+                        // Assuming a constructor exists that takes these parameters
+                        return new Car(plate, make, model, vin, year);
                     }
                 }
-            } catch (IOException e) {
-                System.out.println("An error occurred while reading the file.");
-
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid integer format: " + e.getMessage());
             }
-
-            System.out.println("Customer Not Found");
-            return null;
-            //Asserts are because of this
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading the file.");
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid integer format: " + e.getMessage());
         }
-        return null;
+
+        System.out.println("Car not found for SSN: " + ssnToSearch);
+        return null; // Return null if no matching car is found
     }
 
 public static void setCar(Car car) {
