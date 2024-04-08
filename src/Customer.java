@@ -111,7 +111,7 @@ public class Customer {
             try { // Try Catch for error handling
 
                 /**NAME**/
-                System.out.println("Enter name (First & Last):\n"); //said no space, but that causes error changed to avoid confusion
+                System.out.println("Enter name (First & Last):"); //said no space, but that causes error changed to avoid confusion
                 name = input.nextLine().trim();
                 //word|space|word
                 if (!name.matches("[a-zA-Z]+\\s[a-zA-Z]+")) {//matches one or more letters (first name & last name) Middle is a space.
@@ -180,8 +180,6 @@ public class Customer {
             for (int i = fileTraverseSSN - 1; i < lines.length; i += 6) { //the line of every ssn = i
                 String[] parts = lines[i].split(":");
 
-
-
                 if (parts.length == 2) {
                     String ssn1 = parts[1].trim();
 
@@ -236,7 +234,6 @@ public class Customer {
     public void setConfirmationNumber(int confirmationNumber) {
         Customer.confirmationNumber = confirmationNumber;
     }
-
     /****ERROR******/
     public boolean checkConfirmationNumber(int confirmationNumber) {
         try (BufferedReader br = new BufferedReader(new FileReader("customerInfo.txt"))) {
