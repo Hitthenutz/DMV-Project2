@@ -134,7 +134,7 @@ public class Customer {
                             ssn1 = lines[i].split(":")[1].trim();
 
                             System.out.println("Customer Car Found!");
-                            System.out.println(new Car(plate,make,model,vin,year, new Customer().setSsn(ssn1)));
+                            System.out.println(new Car(plate,make,model,vin,year, new Customer().setSsn(Integer.parseInt(ssn1))));
                             return new Car(plate, make, model, vin, year);
                         }
                     }

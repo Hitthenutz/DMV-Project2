@@ -126,7 +126,6 @@ public class DMV {
                     switch (x) {
                         case 1://Renew
                             if (login){
-
                                     if (currCustomer.getSearchedCustomerCar().getVin().equals(Customer.getCar().getVin())) {
                                        Customer.renewRegistration();
                                         System.out.println("Vehicle successfully renewed");
