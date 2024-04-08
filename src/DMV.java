@@ -169,8 +169,8 @@ public class DMV {
                                         System.out.println("You entered VIN number" + vinNumber);
                                         
                                         //Display the amount for the plates
-                                        System.out.println( "Cost: $" + "45");
-                                         currCustomer.addDebt();
+                                        System.out.println( "Cost: $ + 45");
+                                         currCustomer.addDebt(45.00);
                                         System.out.println("Your Disable plates will arrive in your mail by next Thursday");
                                 break;
                             }
