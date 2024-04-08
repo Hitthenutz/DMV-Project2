@@ -150,15 +150,16 @@ public class DMV {
                             break;
 
                         case 4://License plate/decal/placard
-                             System.out.println("Apply for Disable License PLates\n What type of ");
+                             System.out.println("Apply for Disable License PLates");
                             System.out.println("Have you filled out the REG 195 form found on the DMV website?\n1.No\n2.Yes");
                             input.nextLine();
                             if (j == 2) {
                                 System.out.println("Please have a licensed physician, surgeon, chiropractor, optometrist, physician assistant, nurse practitioner, or certified nurse midwife that has knowledge of the disease and/ or disability complete and sign the Medical Provider’s Certification of Disability section of your application REG 195");
-                                System.out.println("Please provide the vehicle VIN number");
-                                
-                                currCustomer.addDebt();
-                                
+                                System.out.println("Please provide the vehicle VIN number: \nPress Enter");
+                                input.nextLine();
+                                currCustomer.addDebt(45.00);
+                                System.out.println("Cost: $" + currCustomer.getDebt());
+                                System.out.println("Your Disable plates will arrive in your mail by next Thursday");
                                 break;
                             }
                                 
