@@ -200,7 +200,7 @@ public class DMV {
                                 input.nextLine();
                                
                             }
-                            3
+
                             break;
                             
                         case 3:/*************NEW DL***********************/
