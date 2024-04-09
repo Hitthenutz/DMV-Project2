@@ -123,7 +123,7 @@ public class DMV {
                 //stores the number the user selects. Uses number to follow Tree Structure
 
 
-                if (curr.getData().equals(a1.getData())) {
+                if (curr.getData().equals(a1.getData())) {/****REGISTRATION****/
                     System.out.println("What would you like to do in " + curr.getData());
                     for (int i = 0; i < curr.getChildren().size(); i++) {
                         System.out.println((i + 1) + ". " + curr.getChild(i).getData());
@@ -134,7 +134,7 @@ public class DMV {
                     switch (x) {
                         case 1://Renew
                             if (login && currCustomer != null && currCustomer.getCar() != null) {
-                                Customer.renewRegistration(); // Assuming this method is correctly implemented for the current customer's car
+                                Customer.renewRegistration();
                                 System.out.println("Vehicle successfully renewed");
                             } else {
                                 System.out.println("Login or car information is missing.");
@@ -176,13 +176,12 @@ public class DMV {
                             break;
 
                         case 4://License plate/decal/placard
-                            System.out.println("Apply for Disable License PLates");
+                            System.out.println("Apply for Disable License Plates");
                             System.out.println("Have you filled out the REG 195 form found on the DMV website?\n1.Yes\n2.NO");
-                                input.nextLine();
+                                j = input.nextInt();
                                     if (j == 2) {
                                         System.out.println("Please have a licensed physician, surgeon, chiropractor, optometrist, physician assistant, nurse practitioner, or certified nurse midwife that has knowledge of the disease and/ or disability complete and sign the Medical Provider’s Certification of Disability section of your application REG 195");
                                         System.out.println("Please provide the vehicle VIN number: \nPress Enter");
-                                            input.nextLine();
                                         
                                         // prompt the user to enter the VIN number
                                         String vinNumber = input.nextLine();
@@ -208,7 +207,7 @@ public class DMV {
 
                         /****Enter Client Data stores into Customer Object***/
                     }
-                } else if (curr.getData().equals(a2.getData())) {
+                } else if (curr.getData().equals(a2.getData())) { /**** LICENSE/ID ****/
                     System.out.println("What would you like to do in " + curr.getData());
                     for (int i = 0; i < curr.getChildren().size(); i++) {
                         System.out.println((i + 1) + ". " + curr.getChild(i).getData());
@@ -301,9 +300,6 @@ public class DMV {
                                         """);
                                 break;
                             } else {
-                                System.out.println("What type of permit are you applying for");
-
-
                                 System.out.println("Please submit all required documents (Press Enter)");
                                 input.nextLine(); // Clear the newline character left in the buffer
                                 assert currCustomer != null;
