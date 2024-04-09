@@ -36,12 +36,6 @@ public class TreeNode<String> {
         }    }
 
     //returns index at which the thing called is found
-    public int findChild(TreeNode node) {
-        return children.indexOf(node);
-    }
 
-    // Method to print the index of a child node
-    public int getLoc(TreeNode<String> node) {
-        return findChild(node);
-    }
+
 }

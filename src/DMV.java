@@ -3,20 +3,20 @@
  * Lizette Hernandez
  * Simardeep Kaur
  * Angelo Angelidis
- *
+ * <p>
  * Project 2 - DMV Customer Service (Making DMV employee's job easier)
- *
+ * <p>
  * Renew: @Hit
  * New Reg: @Groiky
  * Check Reg: @liz.h123
  * License/Decal/Placard: @Snowflake
- *
+ * <p>
  * License/ID
  * Renew: @Groiky
  * Real ID: @Snowflake
  * New DL: @liz.h123
  * Permits: @Hit
- *
+ * <p>
  * Unauthorized reproduction, duplication, or distribution of any content,
  * including but not limited to text, images, audio, or code, is strictly
  * prohibited and may result in legal action. All rights to copy, modify,
@@ -89,7 +89,7 @@ public class DMV {
             currCustomer = Customer.searchCustomer(x);
             login = true;
             if (currCustomer != null) {
-                DMV.linkCustomerCarBySSN(currCustomer);
+                linkCustomerCarBySsn(currCustomer);
                 // Continue with other operations, like renewing registration
             }
 
@@ -100,7 +100,6 @@ public class DMV {
             System.out.println("Invalid choice. Exiting");
             return;
         }
-
 
 
         while (y) {
@@ -178,36 +177,38 @@ public class DMV {
                         case 4://License plate/decal/placard
                             System.out.println("Apply for Disable License Plates");
                             System.out.println("Have you filled out the REG 195 form found on the DMV website?\n1.Yes\n2.NO");
-                                j = input.nextInt();
-                                    if (j == 2) {
-                                        System.out.println("Please have a licensed physician, surgeon, chiropractor, optometrist, physician assistant, nurse practitioner, or certified nurse midwife that has knowledge of the disease and/ or disability complete and sign the Medical Provider’s Certification of Disability section of your application REG 195");
-                                        System.out.println("Please provide the vehicle VIN number: \nPress Enter");
-                                        
-                                        // prompt the user to enter the VIN number
-                                        String vinNumber = input.nextLine();
+                            j = input.nextInt();
+                            if (j == 1) {
+                                System.out.println("Visit & follow https://www.dmv.ca.gov/portal/vehicle-registration/license-plates-decals-and-placards/");
+                            }
+                            else if (j == 2) {
+                                System.out.println("Please have a licensed physician, surgeon, chiropractor, optometrist, physician assistant, nurse practitioner, or certified nurse midwife that has knowledge of the disease and/ or disability complete and sign the Medical Provider’s Certification of Disability section of your application REG 195");
+                                System.out.println("Please provide the vehicle VIN number: \nPress Enter");
 
-                                        //Display the VIN number 
-                                        System.out.println("You entered VIN number" + vinNumber);
-                                        
-                                        //Display the amount for the plates
-                                        System.out.println( "Cost: $ + 45");
-                                        assert currCustomer != null;
-                                        currCustomer.addDebt(45.00);
-                                        System.out.println("Your Disable plates will arrive in your mail by next Thursday");
+                                // prompt the user to enter the VIN number
+                                String vinNumber = input.nextLine();
+
+                                //Display the VIN number
+                                System.out.println("You entered VIN number" + vinNumber);
+
+                                //Display the amount for the plates
+                                System.out.println("Cost: $ + 45");
+                                assert currCustomer != null;
+                                currCustomer.addDebt(45.00);
+                                System.out.println("Your Disable plates will arrive in your mail by next Thursday");
                                 break;
                             }
-                                
-                            else {
-                                 // You can go on the DMV website and check out the disabled person parking placards and plates
+                             else {
+                                // You can go on the DMV website and check out the disabled person parking placards and plates
                                 System.out.println(""" 
                                             Please visit & follow: https://www.dmv.ca.gov/portal/dmv-virtual-office/dpp-application/            
-                                        """);       
+                                        """);
                             }
                             break;
 
                         /****Enter Client Data stores into Customer Object***/
                     }
-                } else if (curr.getData().equals(a2.getData())) { /**** LICENSE/ID ****/
+                }  else if (curr.getData().equals(a2.getData())) { /**** LICENSE/ID ****/
                     System.out.println("What would you like to do in " + curr.getData());
                     for (int i = 0; i < curr.getChildren().size(); i++) {
                         System.out.println((i + 1) + ". " + curr.getChild(i).getData());
@@ -338,7 +339,8 @@ public class DMV {
 
         }
     }
-    public static void linkCustomerCarBySSN(Customer customer) {
+
+    public static void linkCustomerCarBySsn(Customer customer) {
         int ssnToSearch = customer.getSsn();
         Files fileHandler = new Files(new File("CarInfo.txt"));
 
