@@ -1,14 +1,7 @@
-Customer Name: Matthew Quan
-Customer Address: 1234 urmom str
-Customer Age: 19
-Customer SSN: 312213142
-Customer Confirmation Number: 644969
-Customer Debt: 58.0
-
 Customer Name: Matt Quan
-Customer Address: 1234 yamum str
+Customer Address: 1234 urmom str
 Customer Age: 21
 Customer SSN: 123123123
-Customer Confirmation Number: 520766
+Customer Confirmation Number: 376240
 Customer Debt: 58.0
 

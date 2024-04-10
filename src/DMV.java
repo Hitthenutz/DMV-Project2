@@ -90,17 +90,14 @@ public class DMV {
                 System.out.println("Please enter your SSN to Login");
                 x = input.nextInt();
                 currCustomer = Customer.searchCustomer(x);
-                login = false;
                 if (currCustomer != null) {
                     linkCustomerCarBySsn(currCustomer);
+                    login = false;
                     // Continue with other operations, like renewing registration
                 }
             } else if (x == 2) {
                 currCustomer = Customer.enterDataCustomer();
                 login = false;
-            } else {
-                System.out.println("Invalid choice. Exiting");
-                return;
             }
         }
 
@@ -135,6 +132,9 @@ public class DMV {
 
                     switch (x) {
                         case 1://Renew
+                            System.out.println(login);
+                            System.out.println(currCustomer!=null);
+                            System.out.println(Customer.getCar()!=null);
                             if (!login && currCustomer != null && Customer.getCar() != null) {
                                 Customer.renewRegistration();
                                 currCustomer.addDebt(35.00);
@@ -148,7 +148,7 @@ public class DMV {
                             assert currCustomer != null;
                             Customer.setCar(Car.registerNewCar(newCar, currCustomer.getSsn())); // Register the car
                             try {
-                                fileCar.write(newCar + "\n");
+                                fileCar.write(Car.registerNewCar(newCar, currCustomer.getSsn()) + "\n");
                                 fileCar.write("\n");
                                 System.out.println("Car Data saved to file successfully!\n");
                                 System.out.println("Vehicle registered successfully.");
@@ -353,7 +353,7 @@ public class DMV {
         }
     }
 
-    public static void linkCustomerCarBySsn(Customer customer) {
+ public static void linkCustomerCarBySsn(Customer customer) {
         int ssnToSearch = customer.getSsn();
         Files fileHandler = new Files(new File("CarInfo.txt"));
 
