@@ -1,20 +1,21 @@
-License Plate:wa
-Vin:wadawd
-Make:wad
-Model:wada
-Year:5
-SSN:12
+License Plate: 123123 
+VIN: 123123
+Make: wad
+Model: wad
+Year: 12
+SSN: 312213142
 
-License Plate:wa123
-Vin:wadawd123
-Make:wad123
-Model:wada123
-Year:42
-SSN:1234
+License Plate: 1231231
+VIN: 123123awd
+Make: Toyota
+Model: Camry
+Year: 2020
+SSN: 
 
-License Plate:wa
-Vin:wadawd
-Make:wad
-Model:wada
-Year:52
-SSN:12345
+License Plate: 123
+VIN: 12
+Make: wa
+Model: wa
+Year: 12
+SSN: 
+

@@ -57,7 +57,7 @@ public class Customer {
     // Static method related to car management
     public static void renewRegistration() {
         registrationExpirationDate = LocalDate.now().plusYears(1);
-        System.out.println("Registration Renewed till: " + registrationExpirationDate);
+        System.out.println("Registration Renewed till: " + registrationExpirationDate + "(1 Year)");
     }
 
     // Getters and setters for customer attributes
@@ -256,7 +256,7 @@ public class Customer {
                         System.out.println(cNum);
                         age = Integer.parseInt(lines[i - 1].split(":")[1].trim());
                         System.out.println(age);
-                        debt = Integer.parseInt(lines[i + 2].split(":")[1].trim());
+                        debt = Double.parseDouble((lines[i + 2].split(":")[1].trim()));
                         System.out.println(debt);
 
                         System.out.println("Customer Found!");

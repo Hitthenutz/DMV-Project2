@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Car {
     private String plate,make, model, vin;
-    private int year;
+    private int year, ssn;
 
     private static final Scanner input = new Scanner(System.in);
     Customer customer = new Customer();
@@ -44,17 +44,20 @@ public class Car {
         this.vin = vin;
         this.year = year;
     }
+    public Car(String plate, String make, String model, String vin, int year, int ssn) {
+        this.plate = plate;
+        this.make = make;
+        this.model = model;
+        this.vin = vin;
+        this.year = year;
+        this.ssn = ssn;
+    }
 
     public Car(){
 
     }
-    public static Car registerNewCar(Car newCar) {
-        Car car = new Car();
-        car.setMake(newCar.getMake());
-        car.setModel(newCar.getModel());
-        car.setVin(newCar.getVin());
-        car.setYear(newCar.getYear());
-        return car;
+    public static Car registerNewCar(Car newCar, int ssn) {
+        return new Car(newCar.getPlate(),newCar.getMake(),newCar.getModel(),newCar.getVin(),newCar.getYear(), ssn);
     }
     public static Car enterDataCar(){
 

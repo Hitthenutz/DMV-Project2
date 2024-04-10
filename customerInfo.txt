@@ -1,28 +1,14 @@
-Customer Name: wad wad
-Customer Address: 1234 wadaw waw
-Customer Age: 123
-Customer SSN: 12
-Customer Confirmation Number: 123312
-Customer Debt: 0
-
-Customer Name:wad wada
-Customer Address: 1234 wadawd str
-Customer Age: 1234
-Customer SSN: 1234
-Customer Confirmation Number: 673593
-Customer Debt: 0
+Customer Name: Matthew Quan
+Customer Address: 1234 urmom str
+Customer Age: 19
+Customer SSN: 312213142
+Customer Confirmation Number: 644969
+Customer Debt: 58.0
 
 Customer Name: Matt Quan
-Customer Address: 1234 wadaw wa
-Customer Age: 12345
-Customer SSN: 12345
-Customer Confirmation Number: 917115
-Customer Debt: 0
-
-Customer Name: wad wad
-Customer Address: 1234 wadaw waw
-Customer Age: 123
-Customer SSN: 1234
-Customer Confirmation Number: 777408
+Customer Address: 1234 yamum str
+Customer Age: 21
+Customer SSN: 123123123
+Customer Confirmation Number: 520766
 Customer Debt: 58.0
 

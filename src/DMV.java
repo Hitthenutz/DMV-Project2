@@ -35,9 +35,11 @@ public class DMV {
     public static Scanner input = new Scanner(System.in);
     public static String filePath = "customerInfo.txt";
     public static File f = new File(filePath);
-    public static Files file = new Files(f);
+    public static File f2 = new File("carInfo.txt");
+    public static Files fileCustomer = new Files(f);
+    public static Files fileCar = new Files(f2);
     public static int x, j;
-    public static boolean y = true, login = false;
+    public static boolean y = true, login = true;
 
     public static ArrayList<Customer> customerList = new ArrayList<>();
 
@@ -81,24 +83,25 @@ public class DMV {
         a2.addChild(b5, b6, b7, b8);
 
 
-        System.out.println("1.Login\n2.Register");//(condition) ? (value if true) : (value if false).
-        x = input.nextInt();
-        if (x == 1) {
-            System.out.println("Please enter your SSN to Login");
+        while (login) {
+            System.out.println("1.Login\n2.Register");//(condition) ? (value if true) : (value if false).
             x = input.nextInt();
-            currCustomer = Customer.searchCustomer(x);
-            login = true;
-            if (currCustomer != null) {
-                linkCustomerCarBySsn(currCustomer);
-                // Continue with other operations, like renewing registration
+            if (x == 1) {
+                System.out.println("Please enter your SSN to Login");
+                x = input.nextInt();
+                currCustomer = Customer.searchCustomer(x);
+                login = false;
+                if (currCustomer != null) {
+                    linkCustomerCarBySsn(currCustomer);
+                    // Continue with other operations, like renewing registration
+                }
+            } else if (x == 2) {
+                currCustomer = Customer.enterDataCustomer();
+                login = false;
+            } else {
+                System.out.println("Invalid choice. Exiting");
+                return;
             }
-
-
-        } else if (x == 2) {
-            currCustomer = Customer.enterDataCustomer();
-        } else {
-            System.out.println("Invalid choice. Exiting");
-            return;
         }
 
 
@@ -132,17 +135,27 @@ public class DMV {
 
                     switch (x) {
                         case 1://Renew
-                            if (login && currCustomer != null && currCustomer.getCar() != null) {
+                            if (!login && currCustomer != null && Customer.getCar() != null) {
                                 Customer.renewRegistration();
-                                System.out.println("Vehicle successfully renewed");
+                                currCustomer.addDebt(35.00);
+                                System.out.println("Vehicle successfully renewed\nFee has been added to debt");
                             } else {
                                 System.out.println("Login or car information is missing.");
                             }
                             break;
                         case 2://New Registration
                             Car newCar = Car.enterDataCar(); // Collect car details
-                            Customer.setCar(Car.registerNewCar(newCar)); // Register the car
-                            System.out.println("Vehicle registered successfully.");
+                            assert currCustomer != null;
+                            Customer.setCar(Car.registerNewCar(newCar, currCustomer.getSsn())); // Register the car
+                            try {
+                                fileCar.write(newCar + "\n");
+                                fileCar.write("\n");
+                                System.out.println("Car Data saved to file successfully!\n");
+                                System.out.println("Vehicle registered successfully.");
+                            } catch (IOException e) {
+                                System.out.println("An error occurred while saving the file.");
+                            }
+
                             break;
 
                         case 3://Check Registration Status
@@ -314,8 +327,8 @@ public class DMV {
                                 System.out.println("Confirmation Number: " + currCustomer.getConfirmationNumber() + "\n");
                                 customerList.add(currCustomer);
                                 try {
-                                    file.write(currCustomer + "\n");
-                                    file.write("\n");
+                                    fileCustomer.write(currCustomer + "\n");
+                                    fileCustomer.write("\n");
                                     System.out.println("Data saved to file successfully!\n");
                                 } catch (IOException e) {
                                     System.out.println("An error occurred while saving the file.");
