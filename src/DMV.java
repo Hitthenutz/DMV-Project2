@@ -44,7 +44,7 @@ public class DMV {
     public static ArrayList<Customer> customerList = new ArrayList<>();
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Customer currCustomer = new Customer();
 
         TreeNode<String> root = new TreeNode<>("DMV");
@@ -97,6 +97,7 @@ public class DMV {
                 }
             } else if (x == 2) {
                 currCustomer = Customer.enterDataCustomer();
+                fileCustomer.write(currCustomer + "\n");
                 login = false;
             }
         }

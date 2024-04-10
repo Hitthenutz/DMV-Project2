@@ -1,7 +1,13 @@
-Customer Name: Matt Quan
-Customer Address: 1234 urmom str
-Customer Age: 21
+Customer Name: wa wa
+Customer Address: 12312 wada wa
+Customer Age: 12
 Customer SSN: 123123123
-Customer Confirmation Number: 376240
+Customer Confirmation Number: 543835
 Customer Debt: 58.0
 
+Customer Name: we we
+Customer Address: 1234 wad wad
+Customer Age: 12
+Customer SSN: 12
+Customer Confirmation Number: 0
+Customer Debt: 0.0

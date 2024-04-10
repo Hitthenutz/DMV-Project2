@@ -1,0 +1,14 @@
+License Plate: 123123
+VIN: 123123123
+Make: Toyota
+Model: Camry
+Year: 2020
+SSN: 123123123
+
+License Plate: 123
+VIN: 213
+Make: 123
+Model: 123
+Year: 123
+SSN: 123123123
+
